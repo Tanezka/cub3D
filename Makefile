@@ -1,11 +1,15 @@
 NAME = cub3D
 CFLAGS = -Wall -Wextra -Werror
 CC = cc
-LIBS = -framework OpenGL -framework AppKit ./mlx/libmlx.a -lz
-SRCS = main.c
-OBJS_DIR = obj/
+LIBS = -framework OpenGL -framework AppKit ./mlx/libmlx.a
+SRCS = srcs/main.c \
+		srcs/utils.c \
+		srcs/get_next_line.c \
+		srcs/get_next_line_utils.c
+		srcs/utils2.c
+OBJS_DIR = obj
 OBJS = $(SRCS:.c=.o)
-OBJS_PRE = $(addprefix $(OBJS_DIR), $(OBJS))
+OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(notdir $(OBJS)))
 RM = rm -rf
 
 RED = \x1b[31;01m
@@ -19,7 +23,7 @@ $(NAME): $(OBJS_PRE)
 	@$ $(CC) $(CFLAGS) $(OBJS_PRE) $(LIBS) -o $(NAME)
 	@printf "$(GREEN) Executable named cub3D created$(RESET)\n"
 
-$(OBJS_DIR)%.o: %.c
+$(OBJS_DIR)/%.o: srcs/%.c
 	@mkdir -p $(OBJS_DIR)
 	@$ $(CC) $(CFLAGS) -c $< -o $@
 
