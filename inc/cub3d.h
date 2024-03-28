@@ -35,7 +35,7 @@ typedef struct	s_keys
 
 typedef	struct s_text
 {
-	t_data	data;
+	t_data	img;
 	int		width;
 	int		height;
 }	t_text;
@@ -54,8 +54,7 @@ typedef struct	s_cub
 	char	*we_path;
 	char	*ea_path;
 	char	**map;
-	char	start;
-	int		ret;
+	char	start_path;
 	int		f_color[3];
 	int		c_color[3];
 	int		text_x;
@@ -69,18 +68,27 @@ typedef struct	s_cub
 	t_text	text[4];
 	t_render *rend;
 }	t_cub;
-
+void	cube_free(t_cub *cube);
+void	resize_map(t_cub *cube);
+void	*ft_memset(void *b, int c, size_t len);
+void	*ft_calloc(size_t count, size_t size);
+char	**ft_split(char const *s, char c);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strdup(const char *s1);
+char	*get_next_line(int fd);
+char	*ft_strndup(char *save, int len);
+char	*save_rest(char *save, int len);
+int		split_len(char **split);
 int		error_message(char *message);
+int		map_path_check(char *map_path);
+int		is_current_param(char *line, t_cub *cube, int *nbr);
+int		parse_file(char *filename, t_cub *cube);
+int		check_closed_map(t_cub *cube);
+int		ft_atoi(const char *str);
+int		ft_strcmp(char *s1, char *s2);
 int		ft_notnewline(char *s);
 int		ft_linelen(char *s);
 int		ft_strlen(char *s);
-int 	init_cube(t_cub *cube);
 int		init_param(t_cub *cube);
-char	*ft_strndup(char *save, int len);
-char	*save_rest(char *save, int len);
-char	*get_next_line(int fd);
-void	*ft_calloc(size_t count, size_t size);
-void	*ft_memset(void *b, int c, size_t len);
-void	cube_free(t_cub *cube);
-void	split_free(char **split);
+int		init_cube(t_cub *cube);
 #endif

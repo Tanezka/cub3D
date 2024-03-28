@@ -1,4 +1,5 @@
-#include "../inc/cub3d.h"
+#include "../../inc/cub3d.h"
+#include <stdlib.h>
 
 static char	*ft_merge_data(char *save, char *s2, int i, int j)
 {
