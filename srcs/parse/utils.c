@@ -1,4 +1,5 @@
 #include "../../inc/cub3d.h"
+#include "../../mlx/mlx.h"
 #include <stdlib.h>
 
 int	is_current_param(char *line, t_cub *cube, int *nbr)
@@ -17,11 +18,11 @@ int	is_current_param(char *line, t_cub *cube, int *nbr)
 		right = check_color(split, cube, nbr);
 	if (right != 0)
 		free(line);
-	ft_free_split(split);
+	split_free(split);
 	return (right);
 }
 
-static int check_color(char **split, t_cub *cube, int *nbr)
+int	check_color(char **split, t_cub *cube, int *nbr)
 {
 	char	**colors;
 	int		i;
@@ -37,7 +38,7 @@ static int check_color(char **split, t_cub *cube, int *nbr)
 	while (i < 3 && n != -1)
 	{
 		n = ft_atoi(colors[i]);
-		if (n < 0 || n > 255)
+		if (n < 0 | n > 255)
 			n = -1;
 		else if (!ft_strcmp(split[0], "F"))
 			cube->f_color[i] = n;
@@ -45,12 +46,12 @@ static int check_color(char **split, t_cub *cube, int *nbr)
 			cube->c_color[i] = n;
 		i++;
 	}
-	ft_free_split(colors);
+	split_free(colors);
 	*nbr += 1;
 	return (n != -1);
 }
 
-static int check_direct_path(char **split, t_cub *cube, int *nbr)
+int	check_direct_path(char **split, t_cub *cube, int *nbr)
 {
 	char	*path;
 	t_data	img;
@@ -76,7 +77,7 @@ static int check_direct_path(char **split, t_cub *cube, int *nbr)
 	return (1);
 }
 
-static t_data get_image(t_cub *cube, char *path)
+t_data	get_image(t_cub *cube, char *path)
 {
 	t_data	img;
 	int		width;
@@ -88,11 +89,12 @@ static t_data get_image(t_cub *cube, char *path)
 		free(path);
 		return (img);
 	}
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
+	&img.line_length, &img.endian);
 	return (img);
 }
 
-int map_path_check(char *map_path)
+int	map_path_check(char *map_path)
 {
 	if (ft_strcmp(map_path + ft_strlen(map_path) - 4, ".cub") != 0)
 	{

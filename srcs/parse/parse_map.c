@@ -49,7 +49,7 @@ int	check_closed_map(t_cub *cube)
 	return (1);
 }
 
-static int	check_x_pivot(t_cub *cube, int y, int x)
+int	check_x_pivot(t_cub *cube, int y, int x)
 {
 	int	i;
 
@@ -76,7 +76,7 @@ static int	check_x_pivot(t_cub *cube, int y, int x)
 	return (1);
 }
 
-static int	check_y_pivot(t_cub *cube, int y, int x)
+int	check_y_pivot(t_cub *cube, int y, int x)
 {
 	int	a;
 

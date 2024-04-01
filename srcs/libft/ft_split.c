@@ -1,4 +1,5 @@
 #include "../../inc/cub3d.h"
+#include <stdlib.h>
 
 static int	wordcounter(const char *p, char c)
 {
@@ -39,7 +40,7 @@ static char	*worddup(const char *s, int start, int end)
 char	**ft_split(char const *s, char c)
 {
 	char	**split;
-	size_t	i;
+	int		i;
 	int		a;
 	int		start;
 

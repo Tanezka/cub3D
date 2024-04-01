@@ -17,3 +17,9 @@ int	split_len(char **split)
 		i++;
 	return (i);
 }
+
+int	close_win(t_cub *var)
+{
+	all_free(var);
+	exit(0);
+}

@@ -1,4 +1,5 @@
 #include "../../inc/cub3d.h"
+#include <stdlib.h>
 
 char	*ft_strdup(const char *s1)
 {

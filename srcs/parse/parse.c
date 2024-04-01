@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static int	parse_line(char *line, t_cub *cube, int *nbr)
+int	parse_line(char *line, t_cub *cube, int *nbr)
 {
 	int	ret;
 
@@ -56,12 +56,13 @@ int	parse_file(char *filename, t_cub *cube)
 	return (1);
 }
 
-static int check_path_color(t_cub *cube)
+int	check_path_color(t_cub *cube)
 {
 	int	i;
 
 	i = 0;
-	if (cube->no_path == NULL || cube->so_path == NULL || cube->we_path == NULL || cube->ea_path == NULL)
+	if (cube->no_path == NULL || cube->so_path == NULL || \
+	cube->we_path == NULL || cube->ea_path == NULL)
 	{
 		printf("Error\nMissing path in file\n");
 		return (0);
@@ -78,7 +79,7 @@ static int check_path_color(t_cub *cube)
 	return (1);
 }
 
-static int	parse_map(char *line, t_cub *cube)
+int	parse_map(char *line, t_cub *cube)
 {
 	int		i;
 	int		width;
@@ -101,7 +102,7 @@ static int	parse_map(char *line, t_cub *cube)
 	return (1);
 }
 
-static int	check_current_map_line(char *line, t_cub *cube)
+int	check_current_map_line(char *line, t_cub *cube)
 {
 	int	i;
 
@@ -110,7 +111,7 @@ static int	check_current_map_line(char *line, t_cub *cube)
 	{
 		if (!ft_strchr("10 NSEW", line[i]))
 		{
-			printf("Error\nInvalid character in map\n", line[i]);
+			printf("Error\nInvalid %c character in map\n", line[i]);
 			return (0);
 		}
 		else if (ft_strchr("NSEW", line[i]) && cube->start_path != 0)
