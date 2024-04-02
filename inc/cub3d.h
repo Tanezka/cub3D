@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bbosnak <bbosnak@student.42kocaeli.com.tr  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/02 11:34:33 by bbosnak           #+#    #+#             */
+/*   Updated: 2024/04/02 11:34:35 by bbosnak          ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -5,8 +17,8 @@
 #  define BUFFER_SIZE 4
 # endif
 
-#include <stdbool.h>
-#include <unistd.h>
+# include <stdbool.h>
+# include <unistd.h>
 
 typedef struct s_data
 {
@@ -17,13 +29,13 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
-typedef struct	s_point
+typedef struct s_point
 {
 	double	x;
 	double	y;
 }	t_point;
 
-typedef struct	s_keys
+typedef struct s_keys
 {
 	bool	w;
 	bool	a;
@@ -33,7 +45,7 @@ typedef struct	s_keys
 	bool	right;
 }	t_keys;
 
-typedef	struct s_text
+typedef struct s_text
 {
 	t_data	img;
 	int		width;
@@ -42,31 +54,31 @@ typedef	struct s_text
 
 typedef struct s_render
 {
-	
+	//render variables
 }	t_render;
 
-typedef struct	s_cub
+typedef struct s_cub
 {
-	void	*mlx;
-	void	*win;
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
-	char	**map;
-	char	start_path;
-	int		f_color[3];
-	int		c_color[3];
-	int		text_x;
-	int		text_y;
-	int		move;
-	int		map_width;
-	int		map_height;
-	t_point	pos;
-	t_keys	keys;
-	t_data	img;
-	t_text	text[4];
-	t_render *rend;
+	void		*mlx;
+	void		*win;
+	char		*no_path;
+	char		*so_path;
+	char		*we_path;
+	char		*ea_path;
+	char		**map;
+	char		start_path;
+	int			f_color[3];
+	int			c_color[3];
+	int			text_x;
+	int			text_y;
+	int			move;
+	int			map_width;
+	int			map_height;
+	t_point		pos;
+	t_keys		keys;
+	t_data		img;
+	t_text		text[4];
+	t_render	*rend;
 }	t_cub;
 void	cube_free(t_cub *cube);
 void	resize_map(t_cub *cube);
