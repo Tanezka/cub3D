@@ -56,7 +56,6 @@ int	init_param(t_cub *cube)
 int	main(int ac, char **av)
 {
 	t_cub	cube;
-	void	*test;
 
 	if (ac != 2)
 		error_message("Invalid number of arguments");
