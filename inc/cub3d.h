@@ -62,6 +62,7 @@ typedef struct s_cub
 	int			*angle;
 	void		*mlx;
 	void		*win;
+	t_data		*frame;
 	char		*no_path;
 	char		*so_path;
 	char		*we_path;
@@ -123,4 +124,5 @@ int		check_color(char **split, t_cub *cube, int *nbr);
 int		check_direct_path(char **split, t_cub *cube, int *nbr);
 t_data	get_image(t_cub *cube, char *path);
 void	*print_player(t_cub *cube);
+void	pixel(t_data *data, int x, int y, int color);
 #endif

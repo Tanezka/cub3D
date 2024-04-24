@@ -49,7 +49,6 @@ int	parse_file(char *filename, t_cub *cube)
 	if (fd == -1)
 		return (0);
 	line = get_next_line(fd);
-	printf("line: %s", line);
 	nbr = 0;
 	while (line)
 	{
@@ -59,7 +58,6 @@ int	parse_file(char *filename, t_cub *cube)
 			return (0);
 		}
 		line = get_next_line(fd);
-		printf("line: %s", line);
 	}
 	close(fd);
 	free(line);
