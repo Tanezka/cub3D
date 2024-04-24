@@ -34,8 +34,8 @@ int	parse_line(char *line, t_cub *cube, int *nbr)
 			return (0);
 		ret = parse_map(line, cube);
 	}
-	if (ret == 0)
-		error_message("Invalid line in file");
+	//if (ret == 0)
+	//	error_message("Invalid line in file");
 	return (ret);
 }
 

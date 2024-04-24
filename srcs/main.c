@@ -13,6 +13,7 @@
 #include "../mlx/mlx.h"
 #include "../inc/cub3d.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int	init_cube(t_cub *cube)
 {
@@ -63,10 +64,11 @@ int	main(int ac, char **av)
 	cube.mlx = mlx_init();
 	if (!map_path_check(av[1]) || !parse_file(av[1], &cube))
 	{
-		cube_free(&cube);
+		/*cube_free(&cube);
 		free(cube.mlx);
-		exit(1);
+		exit(1);*/
 	}
+	print_player(&cube);
 	cube.win = mlx_new_window(cube.mlx, 1920, 1080, "cub3D");
 	mlx_hook(cube.win, 2, 1L << 0, key_press, &cube);
 	mlx_hook(cube.win, 3, 1L << 1, key_release, &cube);

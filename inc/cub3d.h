@@ -59,6 +59,7 @@ typedef struct s_render
 
 typedef struct s_cub
 {
+	int			*angle;
 	void		*mlx;
 	void		*win;
 	char		*no_path;
@@ -121,4 +122,5 @@ int		check_current_map_line(char *line, t_cub *cube);
 int		check_color(char **split, t_cub *cube, int *nbr);
 int		check_direct_path(char **split, t_cub *cube, int *nbr);
 t_data	get_image(t_cub *cube, char *path);
+void	*print_player(t_cub *cube);
 #endif

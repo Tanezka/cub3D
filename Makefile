@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -g ##-Wall -Wextra -Werror
 LIBS = -framework OpenGL -framework AppKit mlx/libmlx.a
 SRCS =	srcs/main.c \
 		srcs/get_next_line/get_next_line.c \
@@ -8,6 +8,7 @@ SRCS =	srcs/main.c \
 		srcs/utils/free.c \
 		srcs/utils/utils.c \
 		srcs/utils/hook.c \
+		srcs/utils/mini_movement.c \
 		srcs/parse/parse_map.c \
 		srcs/parse/parse.c \
 		srcs/parse/utils.c \
@@ -20,7 +21,7 @@ SRCS =	srcs/main.c \
 		srcs/libft/ft_strdup.c \
 		srcs/libft/ft_strcmp.c \
 		srcs/libft/ft_split.c \
-		srcs/libft/ft_bzero.c
+		srcs/libft/ft_bzero.c 
 OBJS_DIR = obj/
 OBJS = $(SRCS:.c=.o)
 OBJS_PRE = $(addprefix $(OBJS_DIR), $(OBJS))

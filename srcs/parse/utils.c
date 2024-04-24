@@ -72,7 +72,7 @@ int	check_direct_path(char **split, t_cub *cube, int *nbr)
 	if (split_len(split) != 2)
 		return (0);
 	path = ft_strdup(split[1]);
-	path[ft_strlen(path) - 1] = '\0';
+	path[ft_strlen(path) - 1] = 0;
 	img = get_image(cube, path);
 	if (!img.img)
 		return (0);
@@ -96,6 +96,7 @@ t_data	get_image(t_cub *cube, char *path)
 	t_data	img;
 	int		width;
 	int		height;
+	void	*test;
 
 	img.img = mlx_xpm_file_to_image(cube->mlx, path, &width, &height);
 	if (!img.img)
