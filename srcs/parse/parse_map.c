@@ -42,7 +42,7 @@ int	check_closed_map(t_cub *cube)
 	int	j;
 
 	i = -1;
-	while (cube->map[++i])
+	while (cube->map[++i] != (char *)'\n')
 	{
 		j = -1;
 		while (cube->map[i][++j])
