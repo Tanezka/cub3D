@@ -13,20 +13,21 @@
 #include "../../inc/cub3d.h"
 #include "../../mlx/mlx.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int	is_current_param(char *line, t_cub *cube, int *nbr)
 {
 	int		right;
-	int		left;
 	char	**split;
+	char	*one_var;
 
 	split = ft_split(line, ' ');
-	left = ft_strlen(split[0]);
+	one_var = split[0];
 	right = 0;
-	if (!ft_strcmp(split[0], "NO") || !ft_strcmp(split[0], "SO") \
-	|| !ft_strcmp(split[0], "WE") || !ft_strcmp(split[0], "EA"))
+	if (!ft_strcmp(one_var, "NO") || !ft_strcmp(one_var, "SO") \
+	|| !ft_strcmp(one_var, "WE") || !ft_strcmp(one_var, "EA"))
 		right = check_direct_path(split, cube, nbr);
-	else if (!ft_strcmp(split[0], "F") || !ft_strcmp(split[0], "C"))
+	else if (!ft_strcmp(one_var, "F") || !ft_strcmp(one_var, "C"))
 		right = check_color(split, cube, nbr);
 	if (right != 0)
 		free(line);
@@ -71,6 +72,7 @@ int	check_direct_path(char **split, t_cub *cube, int *nbr)
 	if (split_len(split) != 2)
 		return (0);
 	path = ft_strdup(split[1]);
+	path[ft_strlen(path) - 1] = '\0';
 	img = get_image(cube, path);
 	if (!img.img)
 		return (0);

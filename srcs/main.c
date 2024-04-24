@@ -24,12 +24,12 @@ int	init_cube(t_cub *cube)
 	cube->map_width = 0;
 	cube->pos.x = 0;
 	cube->pos.y = 0;
-	cube->keys.w = 0;
-	cube->keys.a = 0;
-	cube->keys.s = 0;
-	cube->keys.d = 0;
-	cube->keys.left = 0;
-	cube->keys.right = 0;
+	cube->keys.w = false;
+	cube->keys.a = false;
+	cube->keys.s = false;
+	cube->keys.d = false;
+	cube->keys.left = false;
+	cube->keys.right = false;
 	cube->start_path = 0;
 	return (init_param(cube));
 }
@@ -43,12 +43,12 @@ int	init_param(t_cub *cube)
 	cube->so_path = NULL;
 	cube->we_path = NULL;
 	cube->ea_path = NULL;
-	cube->f_color[0] = 256;
-	cube->f_color[1] = 256;
-	cube->f_color[2] = 256;
-	cube->c_color[0] = 256;
-	cube->c_color[1] = 256;
-	cube->c_color[2] = 256;
+	cube->f_color[0] = -1;
+	cube->f_color[1] = -1;
+	cube->f_color[2] = -1;
+	cube->c_color[0] = -1;
+	cube->c_color[1] = -1;
+	cube->c_color[2] = -1;
 	return (1);
 }
 
@@ -57,7 +57,7 @@ int	main(int ac, char **av)
 	t_cub	cube;
 
 	if (ac != 2)
-		error_message("Invalid number of arguments");
+		error_message("Invalid argument\nUse ./cub3D map.cub");
 	if (!init_cube(&cube))
 		error_message("Failed to initialize cube");
 	cube.mlx = mlx_init();

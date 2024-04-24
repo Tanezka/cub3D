@@ -49,6 +49,7 @@ int	parse_file(char *filename, t_cub *cube)
 	if (fd == -1)
 		return (0);
 	line = get_next_line(fd);
+	printf("line: %s", line);
 	nbr = 0;
 	while (line)
 	{
@@ -58,6 +59,7 @@ int	parse_file(char *filename, t_cub *cube)
 			return (0);
 		}
 		line = get_next_line(fd);
+		printf("line: %s", line);
 	}
 	close(fd);
 	free(line);
@@ -81,7 +83,7 @@ int	check_path_color(t_cub *cube)
 	}
 	while (i < 3)
 	{
-		if (cube->f_color[i] == 256 || cube->c_color[i] == 256)
+		if (cube->f_color[i] == -1 || cube->c_color[i] == -1)
 		{
 			printf("Error\nMissing color in file\n");
 			return (0);
@@ -119,7 +121,7 @@ int	check_current_map_line(char *line, t_cub *cube)
 	int	i;
 
 	i = -1;
-	while (line[++i])
+	while (line[++i] != '\n')
 	{
 		if (!ft_strchr("10 NSEW", line[i]))
 		{
