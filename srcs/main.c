@@ -18,6 +18,7 @@
 int	main(int ac, char **av)
 {
 	t_cub	cube;
+	t_data	test;
 
 	if (ac != 2)
 		error_message("Invalid argument\nUse: ./cub3D map.cub");
@@ -29,6 +30,12 @@ int	main(int ac, char **av)
 		free(cube.mlx);
 		exit(1);
 	}
+	test.img = mlx_new_image(cube.mlx, 1920, 1080);
+	test.addr = mlx_get_data_addr(test.img, &test.bits_per_pixel, &test.line_length, &test.endian);
+	cube.frame = &test;
+	//draw_rectangle(cube.frame, 960, 540, 15, 200);
+	//draw_rectangle(cube.frame, 960, 540, 15, -200);
+	//scale_and_cut(cube.text[0].img.img, 1920, 1080, (int[]){0,0}, (int[]){64,64});
 	print_player(&cube);
 	cube.win = mlx_new_window(cube.mlx, 1920, 1080, "cub3D");
 	mlx_hook(cube.win, 2, 1L << 0, key_press, &cube);

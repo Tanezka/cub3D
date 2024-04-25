@@ -3,30 +3,40 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void	find_player(char **map, int *x, int *y)
+void	set_angle(int *angle, char c)
+{
+	int	x;
+
+	if (c == 'N')
+		x = 90;
+	else if (c == 'W')
+		x = 180;
+	else if (c == 'S')
+		x = 270;
+	else if (c == 'E')
+		x = 0;
+	angle = &x;
+}
+
+void	find_player(char **map, int *x, int *y, int *angle)
 {
 	int	i;
 	int	k;
 
-	i = 0;
 	k = 0;
 	while(!!map && !!map[k] && map[k][0] != 0)
 	{
-		write(1, "girdi\n", 6);
+		i = 0;
 		while(map[k][i] != 0)
 		{
-			if (map[k][i] != 'W' && map[k][i] != 'N' && map[k][i] != 'E' && map[k][i] != 'S')
-				i++;
-			else
+			if (map[k][i] == 'W' || map[k][i] == 'N' || map[k][i] == 'E' || map[k][i] == 'S')
 			{
 				*x = i;
 				*y = k;
-				write(1, x, 1);
-				write(1, "\n", 1);
-				write(1, y, 1);
-				write(1, "\n", 1);
+				set_angle(angle, map[k][i]);
 				return ;
 			}
+			i++;
 		}
 		k++;
 	}
@@ -39,7 +49,9 @@ void	*print_player(t_cub *cube)
 	int		x;
 	int		y;
 
-	find_player(cube->map, &x, &y);
-	printf("%s\n", cube->map[0]);
+	find_player(cube->map, &x, &y, cube->angle);
+	cube->pos.x = (double)x;
+	cube->pos.y = (double)y;
+	printf("%f, %f\n", cube->pos.x, cube->pos.y);
 	return (NULL);
 }

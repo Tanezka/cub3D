@@ -49,13 +49,8 @@ int	check_closed_map(t_cub *cube)
 		{
 			if ((i == 0 || j == 0 || i == cube->map_height - 1 \
 			|| j == cube->map_width - 1) && !(cube->map[i][j] == '1' \
-			|| cube->map[i][j] == ' '))
-				return (error_message("Map is not closed"));
-			if (cube->map[i][j] == ' ')
-			{
-				if (!check_x_pivot(cube, i, j) || !check_y_pivot(cube, i, j))
-					return (error_message("Map is not closed"));
-			}
+			|| cube->map[i][j] == ' ') || (cube->map[i][j] == ' ' && (!check_x_pivot(cube, i, j) || !check_y_pivot(cube, i, j)))) //test edilebilinir -Tanez
+				return (0); // temporary
 		}
 	}
 	return (1);
