@@ -14,10 +14,44 @@
 #include "../../mlx/mlx.h"
 #include <stdio.h>
 
-void	x_pos_y_pos(t_cub *cube, int angle);
-void	x_neg_y_pos(t_cub *cube, int angle);
-void	x_neg_y_neg(t_cub *cube, int angle);
-void	x_pos_y_neg(t_cub *cube, int angle);
+void	x_pos_y_pos(t_cub *cube, int angle, int index)
+{
+
+}
+
+void	x_neg_y_pos(t_cub *cube, int angle, int index)
+{
+
+}
+
+void	x_neg_y_neg(t_cub *cube, int angle, int index)
+{
+
+}
+
+void	x_pos_y_neg(t_cub *cube, int angle, int index)
+{
+
+}
+
+void	east_ray(t_cub *cube)
+{
+	double		i;
+	double		distance;
+	double		value;
+	double		x_pos;
+
+	i = cube->pos.x;
+	//printf("%f\n", i);
+	while (cube->map[(int)cube->pos.y][(int)i] != '1')
+	{
+		i++;
+	}
+	distance = i - cube->pos.x;
+	value =  540 -((distance - 1) * 54); 
+	draw_rectangle(cube->frame, 945, 540, 15, value);
+	draw_rectangle(cube->frame, 945, 540, 15, -value);
+}
 
 void	ray_casting(t_cub *cube, int angle)
 {
@@ -25,11 +59,13 @@ void	ray_casting(t_cub *cube, int angle)
 		x_pos_y_pos(cube, angle);
 	else if (angle > 90 && angle < 180)
 		x_neg_y_pos(cube, angle);
-	else if (angle > 90 && angle < 180)
-		x_neg_y_neg(cubei angle);
-	else if (angle > 90 && angle < 180)
+	else if (angle > 180 && angle < 270)
+		x_neg_y_neg(cube, angle);
+	else if (angle > 270 && angle < 360)
+		x_pos_y_neg(cube, angle);
+	else if (angle == 0)
+		east_ray(cube);
 	
-
 }
 
 /*
@@ -71,7 +107,7 @@ int	render_next_frame(t_cub *cube)
 
 	rend = cube->rend;
 	//ft_bzero(cube->img.addr, 1920 * 1080 * cube->img.bits_per_pixel / 8);
-	
+	caster(cube);
 	mlx_put_image_to_window(cube->mlx, cube->win, cube->frame->img, 0, 0);
 	//width = 15;
 	//height = 15;

@@ -59,7 +59,7 @@ typedef struct s_render
 
 typedef struct s_cub
 {
-	int			*angle;
+	double		*angle;
 	void		*mlx;
 	void		*win;
 	t_data		*frame;
@@ -92,6 +92,7 @@ void	*ft_memset(void *b, int c, size_t len);
 void	*ft_calloc(size_t count, size_t size);
 void	*print_player(t_cub *cube);
 void	pixel(t_data *data, int x, int y, int color);
+void	draw_rectangle (void *frame, int x, int y, int width, int height);
 char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);

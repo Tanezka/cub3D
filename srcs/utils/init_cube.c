@@ -3,6 +3,8 @@
 
 int	init_cube(t_cub *cube)
 {
+	double	ang;
+	cube->angle = &ang;
 	cube->map = ft_calloc(1, sizeof(char *));
 	if (!cube->map)
 		return (0);

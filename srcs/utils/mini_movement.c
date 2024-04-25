@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void	set_angle(int *angle, char c)
+void	set_angle(double *angle, char c)
 {
 	int	x;
 
@@ -15,10 +15,10 @@ void	set_angle(int *angle, char c)
 		x = 270;
 	else if (c == 'E')
 		x = 0;
-	angle = &x;
+	*angle = (double)x;
 }
 
-void	find_player(char **map, int *x, int *y, int *angle)
+void	find_player(char **map, int *x, int *y, double *angle)
 {
 	int	i;
 	int	k;

@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -g ##-Wall -Wextra -Werror
 LIBS = -framework OpenGL -framework AppKit mlx/libmlx.a
 SRCS =	srcs/main.c \
 		srcs/line_read/line_reading.c \
