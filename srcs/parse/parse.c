@@ -17,26 +17,26 @@
 
 int	parse_line(char *line, t_cub *cube, int *nbr)
 {
-	int	ret;
+	int	value;
 
 	if (ft_strlen(line) <= 1)
 	{
-		ret = *nbr != -1;
-		if (ret != 0)
+		value = *nbr != -1;
+		if (value != 0)
 			free(line);
 	}
 	else if (*nbr < 6 && *nbr != -1)
-		ret = is_current_param(line, cube, nbr);
+		value = is_current_param(line, cube, nbr);
 	else
 	{
 		*nbr = -1;
 		if (!check_path_color(cube))
 			return (0);
-		ret = parse_map(line, cube);
+		value = parse_map(line, cube);
 	}
-	//if (ret == 0)
-	//	error_message("Invalid line in file");
-	return (ret);
+	if (value == 0)
+		error_message("Invalid line in file");
+	return (value);
 }
 
 int	parse_file(char *filename, t_cub *cube)
@@ -48,18 +48,14 @@ int	parse_file(char *filename, t_cub *cube)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	line = get_next_line(fd);
-	printf("line: %s", line);
-	nbr = 0;
+	((line = line_reading(fd)) && (nbr = 0));
+	if (!line)
+		return (error_message("Empty file"));
 	while (line)
 	{
 		if (!parse_line(line, cube, &nbr))
-		{
-			free(line);
-			return (0);
-		}
-		line = get_next_line(fd);
-		printf("line: %s", line);
+			return (free(line), 0);
+		line = line_reading(fd);
 	}
 	close(fd);
 	free(line);

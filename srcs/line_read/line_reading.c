@@ -66,7 +66,7 @@ static char	*ft_read_data(int fd, char *save)
 	return (save);
 }
 
-char	*get_next_line(int fd)
+char	*line_reading(int fd)
 {
 	char		*line;
 	static char	*save;
