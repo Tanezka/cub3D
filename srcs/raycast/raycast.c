@@ -34,7 +34,7 @@ void	x_pos_y_neg(t_cub *cube, int angle, int index)
 
 }
 
-void	east_ray(t_cub *cube)
+void	east_ray(t_cub *cube, int index)
 {
 	double		i;
 	double		distance;
@@ -48,23 +48,24 @@ void	east_ray(t_cub *cube)
 		i++;
 	}
 	distance = i - cube->pos.x;
+	printf("%d\n", index);
 	value =  540 -((distance - 1) * 54); 
-	draw_rectangle(cube->frame, 945, 540, 15, value);
-	draw_rectangle(cube->frame, 945, 540, 15, -value);
+	draw_rectangle(cube->frame, index * 15, 540, 15, value);
+	draw_rectangle(cube->frame, index * 15, 540, 15, -value);
 }
 
-void	ray_casting(t_cub *cube, int angle)
+void	ray_casting(t_cub *cube, int angle, int index)
 {
 	if (angle > 0 && angle < 90)
-		x_pos_y_pos(cube, angle);
+		x_pos_y_pos(cube, angle, index);
 	else if (angle > 90 && angle < 180)
-		x_neg_y_pos(cube, angle);
+		x_neg_y_pos(cube, angle, index);
 	else if (angle > 180 && angle < 270)
-		x_neg_y_neg(cube, angle);
+		x_neg_y_neg(cube, angle, index);
 	else if (angle > 270 && angle < 360)
-		x_pos_y_neg(cube, angle);
+		x_pos_y_neg(cube, angle, index);
 	else if (angle == 0)
-		east_ray(cube);
+		east_ray(cube, index);
 	
 }
 
@@ -87,13 +88,16 @@ void	caster(t_cub *cube)
 {
 	int i;
 	int	limit;
+	int	index;
 
-	i = *cube->angle - 65;
+	index = 0;
+	i = *cube->angle - 64;
 	limit = *cube->angle + 65;
 	while (i < limit)
 	{
-		ray_casting(cube, i);
+		ray_casting(cube, i, index);
 		i++;
+		index++;
 	}
 }
 
