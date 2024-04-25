@@ -90,16 +90,13 @@ void	ft_bzero(void *str, size_t n);
 void	init_textures(t_cub *cube);
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_calloc(size_t count, size_t size);
-void	*print_player(t_cub *cube);
 char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
-char	*line_reading(int fd);
+char	*get_next_line(int fd);
 char	*ft_strndup(char *save, int len);
 char	*save_rest(char *save, int len);
-char	*ft_str_toupper(char *str);
 int		split_len(char **split);
-int		ft_toupper(int c);
 int		error_message(char *message);
 int		map_path_check(char *map_path);
 int		is_current_param(char *line, t_cub *cube, int *nbr);
@@ -126,9 +123,6 @@ int		check_current_map_line(char *line, t_cub *cube);
 int		check_color(char **split, t_cub *cube, int *nbr);
 int		check_direct_path(char **split, t_cub *cube, int *nbr);
 t_data	get_image(t_cub *cube, char *path);
-<<<<<<< HEAD
-=======
 void	*print_player(t_cub *cube);
 void	pixel(t_data *data, int x, int y, int color);
->>>>>>> a1e78880d9bc69a38dff6340c62d4e5ab683ea4b
 #endif

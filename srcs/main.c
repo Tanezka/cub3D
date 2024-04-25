@@ -15,20 +15,98 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+int	init_cube(t_cub *cube)
+{
+	cube->map = ft_calloc(1, sizeof(char *));
+	if (!cube->map)
+		return (0);
+	cube->map[0] = NULL;
+	cube->map_height = 0;
+	cube->map_width = 0;
+	cube->pos.x = 0;
+	cube->pos.y = 0;
+	cube->keys.w = false;
+	cube->keys.a = false;
+	cube->keys.s = false;
+	cube->keys.d = false;
+	cube->keys.left = false;
+	cube->keys.right = false;
+	cube->start_path = 0;
+	return (init_param(cube));
+}
+
+int	init_param(t_cub *cube)
+{
+	cube->rend = ft_calloc(1, sizeof(t_render));
+	if (!cube->rend)
+		return (0);
+	cube->no_path = NULL;
+	cube->so_path = NULL;
+	cube->we_path = NULL;
+	cube->ea_path = NULL;
+	cube->f_color[0] = -1;
+	cube->f_color[1] = -1;
+	cube->f_color[2] = -1;
+	cube->c_color[0] = -1;
+	cube->c_color[1] = -1;
+	cube->c_color[2] = -1;
+	return (1);
+}
+
+void	scale_and_cut(void *text, int width, int height, int start_pos[2], int area[2])
+{
+	int	scale_y;
+}
+
+void	handle_neg_scale(int *x, int *width, int *y, int *height)
+{
+	if (*height < 0)
+	{
+		*y += *height;
+		*height *= -1;
+	}
+	if (*width < 0)
+	{
+		*x += *width;
+		*width *= -1;
+	}
+}
+
+void	draw_rectangle (void *frame, int x, int y, int width, int height)
+{
+	int	limit_x;
+	int	limit_y;
+
+	handle_neg_scale(&x, &width, &y, &height);
+	limit_x = x + width;
+	limit_y = y + height;
+	while(y < limit_y)
+	{
+		while(x < limit_x)
+		{
+			pixel(frame, x, y, 0x0000FF00);
+			x++;
+		}
+		x = limit_x - width;
+		y++;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_cub	cube;
 	t_data	test;
 
 	if (ac != 2)
-		error_message("Invalid argument\nUse: ./cub3D map.cub");
+		error_message("Invalid argument\nUse ./cub3D map.cub");
 	if (!init_cube(&cube))
 		error_message("Failed to initialize cube");
+	cube.mlx = mlx_init();
 	if (!map_path_check(av[1]) || !parse_file(av[1], &cube))
 	{
-		cube_free(&cube);
+		/*cube_free(&cube);
 		free(cube.mlx);
-		exit(1);
+		exit(1);*/
 	}
 	test.img = mlx_new_image(cube.mlx, 1920, 1080);
 	test.addr = mlx_get_data_addr(test.img, &test.bits_per_pixel, &test.line_length, &test.endian);
