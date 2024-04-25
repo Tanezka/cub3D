@@ -1,10 +1,10 @@
 #include "../../inc/cub3d.h"
 #include "../../mlx/mlx.h"
+#include <stdlib.h>
 
 int	init_cube(t_cub *cube)
 {
-	double	ang;
-	cube->angle = &ang;
+	cube->angle = malloc(1 * sizeof(double));
 	cube->map = ft_calloc(1, sizeof(char *));
 	if (!cube->map)
 		return (0);

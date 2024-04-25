@@ -10,6 +10,7 @@ SRCS =	srcs/main.c \
 		srcs/utils/hook.c \
 		srcs/utils/init_cube.c \
 		srcs/utils/mini_movement.c \
+		srcs/utils/movement.c \
 		srcs/utils/pixel_put.c\
 		srcs/parse/parse_map.c \
 		srcs/parse/parse.c \

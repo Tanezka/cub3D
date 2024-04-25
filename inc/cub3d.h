@@ -128,4 +128,5 @@ int		check_current_map_line(char *line, t_cub *cube);
 int		check_color(char **split, t_cub *cube, int *nbr);
 int		check_direct_path(char **split, t_cub *cube, int *nbr);
 t_data	get_image(t_cub *cube, char *path);
+int		change_angle(int keycode ,void *cube);
 #endif
