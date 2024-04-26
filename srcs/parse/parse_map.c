@@ -23,10 +23,14 @@ void	resize_map(t_cub *cube)
 	while (cube->map[++i])
 	{
 		if (ft_strlen(cube->map[i]) == cube->map_width)
+		{
+			cube->map[i] = ft_strdup(cube->map[i]);
+			cube->map[i][cube->map_width - 1] = ' ';
 			continue ;
+		}
 		tmp = ft_calloc(cube->map_width + 1, sizeof(char));
 		j = -1;
-		while (cube->map[i][++j])
+		while (cube->map[i][++j] && cube->map[i][j] != (char)'\n')
 			tmp[j] = cube->map[i][j];
 		while (j < cube->map_width)
 			tmp[j++] = ' ';
@@ -42,7 +46,7 @@ int	check_closed_map(t_cub *cube)
 	int	j;
 
 	i = -1;
-	while (cube->map[++i] != (char *)'\n')
+	while (cube->map[++i])
 	{
 		j = -1;
 		while (cube->map[i][++j])

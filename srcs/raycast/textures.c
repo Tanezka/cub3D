@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include "../../mlx/mlx.h"
+#include "../../library/mlx/mlx.h"
 
 void	init_textures(t_cub *cube)
 {

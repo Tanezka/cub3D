@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mlx/mlx.h"
+#include "../library/mlx/mlx.h"
 #include "../inc/cub3d.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -73,7 +73,7 @@ int	main(int ac, char **av)
 	test.addr = mlx_get_data_addr(test.img, &test.bits_per_pixel, &test.line_length, &test.endian);
 	cube.frame = &test;
 	draw_rectangle(cube.frame, 960, 540, 15, 540);
-	draw_rectangle(cube.frame, 960, 540, 15, -540);
+	draw_rectangle(cube.frame, 960, 540, 15, -540); 
 	//scale_and_cut(cube.text[0].img.img, 1920, 1080, (int[]){0,0}, (int[]){64,64});
 	print_player(&cube);
 	cube.win = mlx_new_window(cube.mlx, 1920, 1080, "cub3D");

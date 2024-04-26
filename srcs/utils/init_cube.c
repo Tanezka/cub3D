@@ -1,5 +1,5 @@
 #include "../../inc/cub3d.h"
-#include "../../mlx/mlx.h"
+#include "../../library/mlx/mlx.h"
 
 int	init_cube(t_cub *cube)
 {

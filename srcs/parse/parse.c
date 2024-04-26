@@ -62,7 +62,7 @@ int	parse_file(char *filename, t_cub *cube)
 	if (!cube->start_path)
 		return (error_message("Missing path in file"));
 	resize_map(cube);
-	//check_closed_map(cube);
+	check_closed_map(cube);
 	return (1);
 }
 

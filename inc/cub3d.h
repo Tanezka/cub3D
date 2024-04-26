@@ -68,7 +68,6 @@ typedef struct s_cub
 	int			c_color[3];
 	int			text_x;
 	int			text_y;
-	int			move;
 	int			map_width;
 	int			map_height;
 	t_data		*frame;
