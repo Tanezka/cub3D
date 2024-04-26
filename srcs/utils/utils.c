@@ -16,7 +16,7 @@
 
 int	error_message(char *message)
 {
-	printf("Error\n%s\n", message);
+	ft_printf("Error\n%s\n", message);
 	exit(1);
 }
 

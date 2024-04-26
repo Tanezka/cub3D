@@ -63,18 +63,17 @@ int	main(int ac, char **av)
 		error_message("Invalid argument\nUse ./cub3D map.cub");
 	if (!init_cube(&cube))
 		error_message("Failed to initialize cube");
-	cube.mlx = mlx_init();
 	if (!map_path_check(av[1]) || !parse_file(av[1], &cube))
 	{
-		/*cube_free(&cube);
+		cube_free(&cube);
 		free(cube.mlx);
-		exit(1);*/
+		exit(1);
 	}
 	test.img = mlx_new_image(cube.mlx, 1920, 1080);
 	test.addr = mlx_get_data_addr(test.img, &test.bits_per_pixel, &test.line_length, &test.endian);
 	cube.frame = &test;
-	//draw_rectangle(cube.frame, 960, 540, 15, 540);
-	//draw_rectangle(cube.frame, 960, 540, 15, -540);
+	draw_rectangle(cube.frame, 960, 540, 15, 540);
+	draw_rectangle(cube.frame, 960, 540, 15, -540);
 	//scale_and_cut(cube.text[0].img.img, 1920, 1080, (int[]){0,0}, (int[]){64,64});
 	print_player(&cube);
 	cube.win = mlx_new_window(cube.mlx, 1920, 1080, "cub3D");
@@ -85,7 +84,7 @@ int	main(int ac, char **av)
 	cube.img.addr = mlx_get_data_addr(cube.img.img, &cube.img.bits_per_pixel,
 			&cube.img.line_length, &cube.img.endian);
 	init_textures(&cube);
-	mlx_loop_hook(cube.mlx, render_next_frame, &cube);
+	mlx_loop_hook(cube.mlx, raycasting, &cube);
 	mlx_loop(cube.mlx);
 	return (0);
 }

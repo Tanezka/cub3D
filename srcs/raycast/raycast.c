@@ -42,13 +42,13 @@ void	east_ray(t_cub *cube, int index)
 	double		x_pos;
 
 	i = cube->pos.x;
-	//printf("%f\n", i);
+	//ft_printf("%f\n", i);
 	while (cube->map[(int)cube->pos.y][(int)i] != '1')
 	{
 		i++;
 	}
 	distance = i - cube->pos.x;
-	printf("%d\n", index);
+	ft_printf("%d\n", index);
 	value =  540 -((distance - 1) * 54); 
 	draw_rectangle(cube->frame, index * 15, 540, 15, value);
 	draw_rectangle(cube->frame, index * 15, 540, 15, -value);
@@ -101,15 +101,13 @@ void	caster(t_cub *cube)
 	}
 }
 
-int	render_next_frame(t_cub *cube)
+int	raycasting(t_cub *cube)
 {
 	int			x;
 	int			y;
 	int			z;
-	t_render	*rend;
 	void		*test;
 
-	rend = cube->rend;
 	//ft_bzero(cube->img.addr, 1920 * 1080 * cube->img.bits_per_pixel / 8);
 	caster(cube);
 	mlx_put_image_to_window(cube->mlx, cube->win, cube->frame->img, 0, 0);
@@ -117,7 +115,6 @@ int	render_next_frame(t_cub *cube)
 	//height = 15;
 	//mlx_get_data_addr(cube->text[3].img.img, &x, &y, &z);
 	//printf("%d, %d, %d\n", x, y, z);
-	//render_walls(cube);
 	//mlx_put_image_to_window(cube->mlx, cube->win, cube->img.img, 0, 0);
 	return (1);
 }

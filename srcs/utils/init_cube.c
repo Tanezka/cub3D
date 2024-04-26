@@ -3,8 +3,6 @@
 
 int	init_cube(t_cub *cube)
 {
-	double	ang;
-	cube->angle = &ang;
 	cube->map = ft_calloc(1, sizeof(char *));
 	if (!cube->map)
 		return (0);
@@ -20,13 +18,13 @@ int	init_cube(t_cub *cube)
 	cube->keys.left = false;
 	cube->keys.right = false;
 	cube->start_path = 0;
+	cube->angle = &cube->ang;
 	return (init_param(cube));
 }
 
 int	init_param(t_cub *cube)
 {
-	cube->rend = ft_calloc(1, sizeof(t_render));
-	if (!cube->rend)
+	if (!cube)
 		return (0);
 	cube->no_path = NULL;
 	cube->so_path = NULL;

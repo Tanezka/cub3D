@@ -52,6 +52,6 @@ void	*print_player(t_cub *cube)
 	find_player(cube->map, &x, &y, cube->angle);
 	cube->pos.x = (double)x;
 	cube->pos.y = (double)y;
-	printf("%f, %f\n", cube->pos.x, cube->pos.y);
+	ft_printf("%f  %f\n", cube->pos.x, cube->pos.y);
 	return (NULL);
 }

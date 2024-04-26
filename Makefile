@@ -25,7 +25,8 @@ SRCS =	srcs/main.c \
 		srcs/libft/ft_split.c \
 		srcs/libft/ft_bzero.c \
 		srcs/libft/ft_str_toupper.c \
-		srcs/libft/ft_toupper.c
+		srcs/libft/ft_toupper.c \
+		srcs/ft_printf/ft_printf.c
 OBJS_DIR = obj/
 OBJS = $(SRCS:.c=.o)
 OBJS_PRE = $(addprefix $(OBJS_DIR), $(OBJS))

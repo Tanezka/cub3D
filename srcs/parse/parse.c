@@ -62,7 +62,7 @@ int	parse_file(char *filename, t_cub *cube)
 	if (!cube->start_path)
 		return (error_message("Missing path in file"));
 	resize_map(cube);
-	check_closed_map(cube);
+	//check_closed_map(cube);
 	return (1);
 }
 
@@ -74,14 +74,14 @@ int	check_path_color(t_cub *cube)
 	if (cube->no_path == NULL || cube->so_path == NULL || \
 	cube->we_path == NULL || cube->ea_path == NULL)
 	{
-		printf("Error\nMissing path in file\n");
+		ft_printf("Error\nMissing path in file\n");
 		return (0);
 	}
 	while (i < 3)
 	{
 		if (cube->f_color[i] == -1 || cube->c_color[i] == -1)
 		{
-			printf("Error\nMissing color in file\n");
+			ft_printf("Error\nMissing color in file\n");
 			return (0);
 		}
 		i++;
@@ -114,19 +114,19 @@ int	parse_map(char *line, t_cub *cube)
 
 int	check_current_map_line(char *line, t_cub *cube)
 {
-	int	i;
+	int		i;
 
 	i = -1;
-	while (line[++i] != '\n')
+	while (line[++i] != '\n' && line[i] != '\0')
 	{
 		if (!ft_strchr("10 NSEW", line[i]))
 		{
-			printf("Error\nInvalid %c character in map\n", line[i]);
+			ft_printf("Error\nInvalid %c character in map\n", line[i]);
 			return (0);
 		}
 		else if (ft_strchr("NSEW", line[i]) && cube->start_path != 0)
 		{
-			printf("Error\nMultiple starting points\n");
+			ft_printf("Error\nMultiple starting points\n");
 			return (0);
 		}
 		else if (ft_strchr("NSEW", line[i]) && cube->start_path == 0)

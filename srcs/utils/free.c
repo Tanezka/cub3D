@@ -18,7 +18,6 @@
 void	cube_free(t_cub *cube)
 {
 	split_free(cube->map);
-	free(cube->rend);
 	free(cube->ea_path);
 	free(cube->no_path);
 	free(cube->we_path);
