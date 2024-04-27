@@ -7,7 +7,7 @@ SRCS =	srcs/main.c \
 		library/line_read/line_reading_utils.c \
 		srcs/utils/free.c \
 		srcs/utils/utils.c \
-		srcs/utils/hook.c \
+		srcs/utils/handle_keys.c \
 		srcs/utils/init_cube.c \
 		srcs/utils/mini_movement.c \
 		srcs/utils/pixel_put.c\
@@ -23,6 +23,7 @@ SRCS =	srcs/main.c \
 		library/libft/ft_strdup.c \
 		library/libft/ft_strcmp.c \
 		library/libft/ft_split.c \
+		library/libft/ft_isdigit.c \
 		library/libft/ft_bzero.c \
 		library/libft/ft_str_toupper.c \
 		library/libft/ft_toupper.c \

@@ -23,6 +23,8 @@ int	is_current_param(char *line, t_cub *cube, int *nbr)
 	char	*uppercase_var;
 
 	split = ft_split(line, ' ');
+	if (!split)
+		return (0);
 	one_var = split[0];
 	uppercase_var = ft_str_toupper(one_var);
 	right = 0;
@@ -114,9 +116,6 @@ t_data	get_image(t_cub *cube, char *path)
 int	map_path_check(char *map_path)
 {
 	if (ft_strcmp(map_path + ft_strlen(map_path) - 4, ".cub") != 0)
-	{
-		error_message("Wrong file format");
-		return (0);
-	}
+		error_message("Wrong file format should have .cub extension");
 	return (1);
 }

@@ -60,7 +60,7 @@ int	main(int ac, char **av)
 	t_data	test;
 
 	if (ac != 2)
-		error_message("Invalid argument\nUse ./cub3D map.cub");
+		error_message("Missing or invalid argument \nUse: ./cub3D map.cub");
 	if (!init_cube(&cube))
 		error_message("Failed to initialize cube");
 	if (!map_path_check(av[1]) || !parse_file(av[1], &cube))
@@ -74,7 +74,7 @@ int	main(int ac, char **av)
 	cube.frame = &test;
 	draw_rectangle(cube.frame, 960, 540, 15, 540);
 	draw_rectangle(cube.frame, 960, 540, 15, -540); 
-	//scale_and_cut(cube.text[0].img.img, 1920, 1080, (int[]){0,0}, (int[]){64,64});
+	scale_and_cut(cube.text[0].img.img, 1920, 1080, (int[]){0,0}, (int[]){64,64});
 	print_player(&cube);
 	cube.win = mlx_new_window(cube.mlx, 1920, 1080, "cub3D");
 	mlx_hook(cube.win, 2, 1L << 0, key_press, &cube);

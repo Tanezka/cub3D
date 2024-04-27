@@ -19,10 +19,10 @@ int	init_cube(t_cub *cube)
 	cube->keys.right = false;
 	cube->start_path = 0;
 	cube->angle = &cube->ang;
-	return (init_param(cube));
+	return (init_cube2(cube));
 }
 
-int	init_param(t_cub *cube)
+int	init_cube2(t_cub *cube)
 {
 	if (!cube)
 		return (0);

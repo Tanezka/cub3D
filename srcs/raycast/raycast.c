@@ -42,7 +42,7 @@ void	east_ray(t_cub *cube, int index)
 	double		x_pos;
 
 	i = cube->pos.x;
-	//ft_printf("%f\n", i);
+	//printf("%f\n", i);
 	while (cube->map[(int)cube->pos.y][(int)i] != '1')
 	{
 		i++;
