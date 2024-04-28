@@ -14,12 +14,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int	error_message(char *message)
-{
-	ft_printf("Error\n%s\n", message);
-	exit(1);
-}
-
 int	split_len(char **split)
 {
 	int	i;
@@ -28,10 +22,4 @@ int	split_len(char **split)
 	while (split[i])
 		i++;
 	return (i);
-}
-
-int	close_win(t_cub *var)
-{
-	all_free(var);
-	exit(0);
 }

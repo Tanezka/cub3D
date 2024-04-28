@@ -27,6 +27,8 @@ int	is_current_param(char *line, t_cub *cube, int *nbr)
 		return (0);
 	one_var = split[0];
 	uppercase_var = ft_str_toupper(one_var);
+	if (!uppercase_var)
+		return (error_message("Failed to convert to uppercase"));
 	right = 0;
 	if (!ft_strcmp(uppercase_var, "NO") || !ft_strcmp(uppercase_var, "SO") \
 	|| !ft_strcmp(uppercase_var, "WE") || !ft_strcmp(uppercase_var, "EA"))
@@ -110,12 +112,10 @@ t_data	get_image(t_cub *cube, char *path)
 	}
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
 	&img.line_length, &img.endian);
+	if (img.addr == NULL)
+	{
+		mlx_destroy_image(cube->mlx, img.img);
+		free(path);
+	}
 	return (img);
-}
-
-int	map_path_check(char *map_path)
-{
-	if (ft_strcmp(map_path + ft_strlen(map_path) - 4, ".cub") != 0)
-		error_message("Wrong file format should have .cub extension");
-	return (1);
 }

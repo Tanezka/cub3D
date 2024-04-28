@@ -25,6 +25,8 @@ void	resize_map(t_cub *cube)
 		if (ft_strlen(cube->map[i]) == cube->map_width)
 		{
 			cube->map[i] = ft_strdup(cube->map[i]);
+			if (!cube->map[i])
+				return ;
 			cube->map[i][cube->map_width - 1] = ' ';
 			continue ;
 		}
@@ -40,79 +42,52 @@ void	resize_map(t_cub *cube)
 	}
 }
 
-int	check_closed_map(t_cub *cube)
+int	parse_map(char *line, t_cub *cube)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		width;
+	char	**new_map;
 
 	i = -1;
+	if (!check_current_map_line(line, cube))
+		return (0);
+	width = ft_strlen(line);
+	cube->map_height++;
+	if (width > cube->map_width)
+		cube->map_width = width;
+	new_map = ft_calloc(cube->map_height + 1, sizeof(char *));
 	while (cube->map[++i])
+		new_map[i] = cube->map[i];
+	new_map[i] = line;
+	new_map[i + 1] = NULL;
+	free(cube->map);
+	cube->map = new_map;
+	return (1);
+}
+
+int	check_current_map_line(char *line, t_cub *cube)
+{
+	int		i;
+
+	i = -1;
+	while (line[++i] != '\n' && line[i] != '\0')
 	{
-		j = -1;
-		while (cube->map[i][++j])
+		if (!ft_strchr("10 NSEW", line[i]))
 		{
-			if ((i == 0 || j == 0 || i == cube->map_height - 1 \
-			|| j == cube->map_width - 1) && !(cube->map[i][j] == '1' \
-			|| cube->map[i][j] == ' '))
-				return (error_message("Map not closed"));
-			if (cube->map[i][j] == ' ')
-				if (!check_x_pivot(cube, i, j) || !check_y_pivot(cube, i, j))
-					return (error_message("Map not closed"));
+			ft_printf("Error\nInvalid %c character in map\n", line[i]);
+			return (0);
 		}
-	}
-	return (1);
-}
-
-int	check_x_pivot(t_cub *cube, int y, int x)
-{
-	int	i;
-
-	i = x;
-	while (i < cube->map_width)
-	{
-		if (cube->map[y][i] == '1')
-			break ;
-		else if (cube->map[y][i] != ' ')
+		else if (ft_strchr("NSEW", line[i]) && cube->start_path != 0)
+		{
+			ft_printf("Error\nMultiple starting points\n");
 			return (0);
-		i++;
-	}
-	i = x;
-	while (i)
-	{
-		if (cube->map[y][i] == '1')
-			break ;
-		else if (cube->map[y][i] != ' ')
-			return (0);
-		if (i == 0)
-			break ;
-		i--;
-	}
-	return (1);
-}
-
-int	check_y_pivot(t_cub *cube, int y, int x)
-{
-	int	a;
-
-	a = y;
-	while (cube->map[a])
-	{
-		if (cube->map[a][x] == '1')
-			break ;
-		else if (cube->map[a][x] != ' ')
-			return (0);
-		a++;
-	}
-	a = y;
-	while (cube->map[a])
-	{
-		if (cube->map[a][x] == '1')
-			break ;
-		else if (cube->map[a][x] != ' ')
-			return (0);
-		if (a == 0)
-			break ;
-		a--;
+		}
+		else if (ft_strchr("NSEW", line[i]) && cube->start_path == 0)
+		{
+			cube->start_path = line[i];
+			cube->pos.x = (double)i;
+			cube->pos.y = (double)cube->map_height;
+		}
 	}
 	return (1);
 }

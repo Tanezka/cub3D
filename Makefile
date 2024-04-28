@@ -3,19 +3,25 @@ CC = cc
 CFLAGS = -g #-Wall -Wextra -Werror
 LIBS = -framework OpenGL -framework AppKit library/mlx/libmlx.a
 SRCS =	srcs/main.c \
-		library/line_read/line_reading.c \
-		library/line_read/line_reading_utils.c \
 		srcs/utils/free.c \
-		srcs/utils/utils.c \
+		srcs/utils/split_len.c \
+		srcs/utils/error_msg.c \
 		srcs/utils/handle_keys.c \
 		srcs/utils/init_cube.c \
+		srcs/utils/map_path_check.c \
 		srcs/utils/mini_movement.c \
 		srcs/utils/pixel_put.c\
+		srcs/utils/clean.c \
 		srcs/parse/parse_map.c \
 		srcs/parse/parse.c \
-		srcs/parse/utils.c \
+		srcs/parse/check_closed_map.c \
+		srcs/parse/init_textures.c \
+		srcs/parse/map_param_control.c \
 		srcs/raycast/raycast.c \
-		srcs/raycast/textures.c \
+		srcs/draw/scale.c \
+		srcs/mlx_settings/mlx_sett.c \
+		library/line_read/line_reading.c \
+		library/line_read/line_reading_utils.c \
 		library/libft/ft_atoi.c \
 		library/libft/ft_calloc.c \
 		library/libft/ft_memset.c \

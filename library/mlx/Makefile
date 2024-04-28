@@ -16,6 +16,7 @@ all: $(NOM)
 $(NOM):	$(OBJ)
 	@ar -r $(NOM) $(OBJ)
 	@ranlib $(NOM)
+	@clear
 
 clean:
 	@rm -f $(NOM) $(OBJ) *~
