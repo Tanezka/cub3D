@@ -11,8 +11,12 @@
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+#include "../../library/mlx/mlx.h"
+
 #include "../../mlx/mlx.h"
 #include <math.h>
+
 #include <stdio.h>
 
 void	x_pos_y_pos(t_cub *cube, int angle, int index)
@@ -48,6 +52,10 @@ void	east_ray(t_cub *cube, int index)
 		i++;
 	}
 	distance = i - cube->pos.x;
+
+	ft_printf("%d\n", index);
+
+
 	value =  540 -((distance - 1) * 54); 
 	draw_rectangle(cube->frame, index * 15, 540, 15, value);
 	draw_rectangle(cube->frame, index * 15, 540, 15, -value);
@@ -234,15 +242,13 @@ void	fill_black(t_cub *cube)
 	}
 }
 
-int	render_next_frame(t_cub *cube)
+int	raycasting(t_cub *cube)
 {
 	int			x;
 	int			y;
 	int			z;
-	t_render	*rend;
 	void		*test;
 
-	rend = cube->rend;
 	//ft_bzero(cube->img.addr, 1920 * 1080 * cube->img.bits_per_pixel / 8);
 	//fill_black(cube);
 	caster(cube);
@@ -252,7 +258,6 @@ int	render_next_frame(t_cub *cube)
 	//height = 15;
 	//mlx_get_data_addr(cube->text[3].img.img, &x, &y, &z);
 	//printf("%d, %d, %d\n", x, y, z);
-	//render_walls(cube);
 	//mlx_put_image_to_window(cube->mlx, cube->win, cube->img.img, 0, 0);
 	return (1);
 }

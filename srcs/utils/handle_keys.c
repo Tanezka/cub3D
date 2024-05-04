@@ -17,33 +17,33 @@ int	key_press(int keycode, t_cub *var)
 	if (keycode == 53)
 		close_win(var);
 	if (keycode == 13)
-		var->keys.w = 1;
+		var->keys.w = true;
 	if (keycode == 0)
-		var->keys.a = 1;
+		var->keys.a = true;
 	if (keycode == 1)
-		var->keys.s = 1;
+		var->keys.s = true;
 	if (keycode == 2)
-		var->keys.d = 1;
+		var->keys.d = true;
 	if (keycode == 123)
-		var->keys.left = 1;
+		var->keys.left = true;
 	if (keycode == 124)
-		var->keys.right = 1;
+		var->keys.right = true;
 	return (0);
 }
 
 int	key_release(int keycode, t_cub *var)
 {
 	if (keycode == 13)
-		var->keys.w = 0;
+		var->keys.w = false;
 	if (keycode == 0)
-		var->keys.a = 0;
+		var->keys.a = false;
 	if (keycode == 1)
-		var->keys.s = 0;
+		var->keys.s = false;
 	if (keycode == 2)
-		var->keys.d = 0;
+		var->keys.d = false;
 	if (keycode == 123)
-		var->keys.left = 0;
+		var->keys.left = false;
 	if (keycode == 124)
-		var->keys.right = 0;
+		var->keys.right = false;
 	return (0);
 }

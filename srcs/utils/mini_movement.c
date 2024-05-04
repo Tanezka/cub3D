@@ -1,6 +1,4 @@
-#include "../../mlx/mlx.h"
 #include "../../inc/cub3d.h"
-#include <stdlib.h>
 #include <stdio.h>
 
 void	set_angle(double *angle, char c)
@@ -31,8 +29,8 @@ void	find_player(char **map, int *x, int *y, double *angle)
 		{
 			if (map[k][i] == 'W' || map[k][i] == 'N' || map[k][i] == 'E' || map[k][i] == 'S')
 			{
-				*x = i;
-				*y = k;
+				//*x = i;
+				//*y = k;
 				set_angle(angle, map[k][i]);
 				return ;
 			}
@@ -50,6 +48,11 @@ void	*print_player(t_cub *cube)
 	int		y;
 
 	find_player(cube->map, &x, &y, cube->angle);
+
+	//cube->pos.x = (double)x;
+	//cube->pos.y = (double)y;
+	//printf("%f  %f\n", cube->pos.x, cube->pos.y);
+
 	cube->pos.x = (double)x + 0.5f;
 	cube->pos.y = (double)y + 0.5f;
 	printf("%f, %f\n", cube->pos.x, cube->pos.y);
