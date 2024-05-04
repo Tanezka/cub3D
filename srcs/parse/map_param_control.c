@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include "../../mlx/mlx.h"
+#include "../../library/mlx/mlx.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -23,8 +23,12 @@ int	is_current_param(char *line, t_cub *cube, int *nbr)
 	char	*uppercase_var;
 
 	split = ft_split(line, ' ');
+	if (!split)
+		return (0);
 	one_var = split[0];
 	uppercase_var = ft_str_toupper(one_var);
+	if (!uppercase_var)
+		return (error_message("Failed to convert to uppercase"));
 	right = 0;
 	if (!ft_strcmp(uppercase_var, "NO") || !ft_strcmp(uppercase_var, "SO") \
 	|| !ft_strcmp(uppercase_var, "WE") || !ft_strcmp(uppercase_var, "EA"))
@@ -108,15 +112,10 @@ t_data	get_image(t_cub *cube, char *path)
 	}
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
 	&img.line_length, &img.endian);
-	return (img);
-}
-
-int	map_path_check(char *map_path)
-{
-	if (ft_strcmp(map_path + ft_strlen(map_path) - 4, ".cub") != 0)
+	if (img.addr == NULL)
 	{
-		error_message("Wrong file format");
-		return (0);
+		mlx_destroy_image(cube->mlx, img.img);
+		free(path);
 	}
-	return (1);
+	return (img);
 }

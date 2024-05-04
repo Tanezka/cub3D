@@ -11,14 +11,12 @@
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include "../../mlx/mlx.h"
+#include "../../library/mlx/mlx.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 void	cube_free(t_cub *cube)
 {
 	split_free(cube->map);
-	free(cube->rend);
 	free(cube->ea_path);
 	free(cube->no_path);
 	free(cube->we_path);
@@ -44,4 +42,10 @@ void	all_free(t_cub *var)
 	mlx_destroy_image(var->mlx, var->text[2].img.img);
 	mlx_destroy_image(var->mlx, var->text[3].img.img);
 	cube_free(var);
+}
+
+int	close_win(t_cub *var)
+{
+	all_free(var);
+	exit(0);
 }

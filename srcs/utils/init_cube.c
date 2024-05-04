@@ -1,10 +1,12 @@
 #include "../../inc/cub3d.h"
-#include "../../mlx/mlx.h"
+#include "../../library/mlx/mlx.h"
 #include <stdlib.h>
 
 int	init_cube(t_cub *cube)
 {
 	cube->angle = malloc(1 * sizeof(double));
+	if (!cube->angle)
+		return (0);
 	cube->map = ft_calloc(1, sizeof(char *));
 	if (!cube->map)
 		return (0);
@@ -20,13 +22,14 @@ int	init_cube(t_cub *cube)
 	cube->keys.left = false;
 	cube->keys.right = false;
 	cube->start_path = 0;
-	return (init_param(cube));
+	cube->angle = &cube->ang;
+	return (init_cube2(cube));
 }
 
-int	init_param(t_cub *cube)
+int	init_cube2(t_cub *cube)
 {
-	cube->rend = ft_calloc(1, sizeof(t_render));
-	if (!cube->rend)
+	cube->mlx = mlx_init();
+	if (!cube->mlx)
 		return (0);
 	cube->no_path = NULL;
 	cube->so_path = NULL;
@@ -38,6 +41,5 @@ int	init_param(t_cub *cube)
 	cube->c_color[0] = -1;
 	cube->c_color[1] = -1;
 	cube->c_color[2] = -1;
-	cube->mlx = mlx_init();
 	return (1);
 }
