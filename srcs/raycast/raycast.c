@@ -207,7 +207,7 @@ void	caster(t_cub *cube)
 	index = 0;
 	i = *cube->angle - 63;
 	limit = *cube->angle + 64;
-	while (i < limit && as == 0)
+	while (i < limit && as >= 0)
 	{
 		ray_casting(cube, i, index);
 		i += 1;
