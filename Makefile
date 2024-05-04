@@ -10,6 +10,7 @@ SRCS =	srcs/main.c \
 		srcs/utils/init_cube.c \
 		srcs/utils/map_path_check.c \
 		srcs/utils/mini_movement.c \
+		srcs/utils/movement.c \
 		srcs/utils/pixel_put.c\
 		srcs/utils/clean.c \
 		srcs/parse/parse_map.c \

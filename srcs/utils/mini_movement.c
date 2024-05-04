@@ -48,8 +48,13 @@ void	*print_player(t_cub *cube)
 	int		y;
 
 	find_player(cube->map, &x, &y, cube->angle);
+
 	//cube->pos.x = (double)x;
 	//cube->pos.y = (double)y;
 	//printf("%f  %f\n", cube->pos.x, cube->pos.y);
+
+	cube->pos.x = (double)x + 0.5f;
+	cube->pos.y = (double)y + 0.5f;
+	printf("%f, %f\n", cube->pos.x, cube->pos.y);
 	return (NULL);
 }
