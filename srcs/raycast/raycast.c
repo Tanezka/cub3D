@@ -11,12 +11,8 @@
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
 #include "../../library/mlx/mlx.h"
-
-#include "../../mlx/mlx.h"
 #include <math.h>
-
 #include <stdio.h>
 
 void	x_pos_y_pos(t_cub *cube, int angle, int index)

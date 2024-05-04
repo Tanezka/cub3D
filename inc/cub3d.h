@@ -90,7 +90,7 @@ void	*print_player(t_cub *cube);
 void	clean(t_cub *cube);
 void	set_angle(double *angle, char c);
 void	east_ray(t_cub *cube, int index);
-void	ray_casting(t_cub *cube, int angle, int index);
+void	ray_casting(t_cub *cube, double angle, int index);
 void	caster(t_cub *cube);
 void	mlx_sett(t_cub *cube);
 void	find_player(char **map, int *x, int *y, double *angle);
@@ -132,6 +132,6 @@ int		check_path_color(t_cub *cube);
 int		check_current_map_line(char *line, t_cub *cube);
 int		check_color(char **split, t_cub *cube, int *nbr);
 int		check_direct_path(char **split, t_cub *cube, int *nbr);
+int		change_angle(int keycode, void *cube);
 t_data	get_image(t_cub *cube, char *path);
-int		change_angle(int keycode ,void *cube);
 #endif
