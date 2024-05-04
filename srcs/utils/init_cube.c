@@ -24,7 +24,8 @@ int	init_cube(t_cub *cube)
 
 int	init_cube2(t_cub *cube)
 {
-	if (!cube)
+	cube->mlx = mlx_init();
+	if (!cube->mlx)
 		return (0);
 	cube->no_path = NULL;
 	cube->so_path = NULL;
@@ -36,6 +37,5 @@ int	init_cube2(t_cub *cube)
 	cube->c_color[0] = -1;
 	cube->c_color[1] = -1;
 	cube->c_color[2] = -1;
-	cube->mlx = mlx_init();
 	return (1);
 }

@@ -17,7 +17,9 @@
 int	parse_line(char *line, t_cub *cube, int *nbr)
 {
 	int	value;
+	int	i;
 
+	i = -1;
 	if (ft_strlen(line) <= 1)
 	{
 		value = *nbr != -1;
@@ -31,6 +33,9 @@ int	parse_line(char *line, t_cub *cube, int *nbr)
 		*nbr = -1;
 		if (!check_path_color(cube))
 			return (0);
+		while (line[++i] != '\n')
+			line[i] = line[i];
+		line[i] = 0;
 		value = parse_map(line, cube);
 	}
 	if (value == 0)
@@ -69,13 +74,13 @@ int	check_path_color(t_cub *cube)
 {
 	int	i;
 
-	i = 0;
 	if (cube->no_path == NULL || cube->so_path == NULL || \
 	cube->we_path == NULL || cube->ea_path == NULL)
 	{
 		ft_printf("Error\nMissing path in file\n");
 		return (0);
 	}
+	i = 0;
 	while (i < 3)
 	{
 		if (cube->f_color[i] == -1 || cube->c_color[i] == -1)

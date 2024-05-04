@@ -23,16 +23,10 @@ void	resize_map(t_cub *cube)
 	while (cube->map[++i])
 	{
 		if (ft_strlen(cube->map[i]) == cube->map_width)
-		{
-			cube->map[i] = ft_strdup(cube->map[i]);
-			if (!cube->map[i])
-				return ;
-			cube->map[i][cube->map_width - 1] = ' ';
 			continue ;
-		}
 		tmp = ft_calloc(cube->map_width + 1, sizeof(char));
 		j = -1;
-		while (cube->map[i][++j] && cube->map[i][j] != (char)'\n')
+		while (cube->map[i][++j])
 			tmp[j] = cube->map[i][j];
 		while (j < cube->map_width)
 			tmp[j++] = ' ';
@@ -48,9 +42,9 @@ int	parse_map(char *line, t_cub *cube)
 	int		width;
 	char	**new_map;
 
-	i = -1;
 	if (!check_current_map_line(line, cube))
 		return (0);
+	i = -1;
 	width = ft_strlen(line);
 	cube->map_height++;
 	if (width > cube->map_width)
@@ -70,7 +64,7 @@ int	check_current_map_line(char *line, t_cub *cube)
 	int		i;
 
 	i = -1;
-	while (line[++i] != '\n' && line[i] != '\0')
+	while (line[++i])
 	{
 		if (!ft_strchr("10 NSEW", line[i]))
 		{

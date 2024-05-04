@@ -3,10 +3,9 @@
 
 void	mlx_sett(t_cub *cube)
 {
-	t_data	test;
-	test.img = mlx_new_image(cube->mlx, 1920, 1080);
-	test.addr = mlx_get_data_addr(test.img, &test.bits_per_pixel, &test.line_length, &test.endian);
-	cube->frame = &test;
+	cube->test.img = mlx_new_image(cube->mlx, 1920, 1080);
+	cube->test.addr = mlx_get_data_addr(cube->test.img, &cube->test.bits_per_pixel, &cube->test.line_length, &cube->test.endian);
+	cube->frame = &cube->test;
 	draw_rectangle(cube->frame, 960, 540, 15, 540);
 	draw_rectangle(cube->frame, 960, 540, 15, -540); 
 	//scale_and_cut(cube->text[0].img.img, 1920, 1080, (int[]){0,0}, (int[]){64,64});

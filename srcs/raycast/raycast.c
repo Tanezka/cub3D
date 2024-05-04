@@ -115,6 +115,6 @@ int	raycasting(t_cub *cube)
 	//height = 15;
 	//mlx_get_data_addr(cube->text[3].img.img, &x, &y, &z);
 	//printf("%d, %d, %d\n", x, y, z);
-	mlx_put_image_to_window(cube->mlx, cube->win, cube->img.img, 0, 0);
+	//mlx_put_image_to_window(cube->mlx, cube->win, cube->img.img, 0, 0);
 	return (1);
 }

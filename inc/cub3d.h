@@ -74,6 +74,7 @@ typedef struct s_cub
 	t_point		pos;
 	t_keys		keys;
 	t_data		img;
+	t_data		test;
 	t_text		text[4];
 }	t_cub;
 void	cube_free(t_cub *cube);
