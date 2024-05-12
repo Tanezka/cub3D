@@ -58,7 +58,7 @@ int	check_color(char **split, t_cub *cube, int *nbr)
 	while (++i < 3 && n != -1)
 	{
 		n = ft_atoi(colors[i]);
-		if (n < 0 | n > 255)
+		if (n < 0 || n > 255)
 			n = -1;
 		else if (!ft_strcmp(ft_str_toupper(split[0]), "F"))
 			cube->f_color[i] = n;
