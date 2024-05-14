@@ -64,6 +64,9 @@ typedef struct s_cub
 	char		start_path;
 	double		*angle;
 	double		ang;
+    int         *fov;
+    int         *s_width;
+    int         *s_height;
 	int			f_color[3];
 	int			c_color[3];
 	int			text_x;
@@ -95,7 +98,7 @@ void	caster(t_cub *cube);
 void	mlx_sett(t_cub *cube);
 void	find_player(char **map, int *x, int *y, double *angle);
 void	pixel(t_data *data, int x, int y, int color);
-void	draw_rectangle (void *frame, int x, int y, int width, int height);
+void	draw_rectangle (void *frame, int x, int y, int color, int height);
 char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);

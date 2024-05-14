@@ -29,8 +29,8 @@ void	find_player(char **map, int *x, int *y, double *angle)
 		{
 			if (map[k][i] == 'W' || map[k][i] == 'N' || map[k][i] == 'E' || map[k][i] == 'S')
 			{
-				//*x = i;
-				//*y = k;
+				*x = i;
+				*y = k;
 				set_angle(angle, map[k][i]);
 				return ;
 			}

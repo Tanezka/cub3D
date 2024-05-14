@@ -1,4 +1,5 @@
 #include "../../inc/cub3d.h"
+#include <stdio.h>
 
 void	scale_and_cut(void *text, int width, int height, int start_pos[2], int area[2])
 {
@@ -19,11 +20,13 @@ void	handle_neg_scale(int *x, int *width, int *y, int *height)
 	}
 }
 
-void	draw_rectangle (void *frame, int x, int y, int width, int height)
+void	draw_rectangle (void *frame, int x, int y, int color, int height)
 {
 	int	limit_x;
 	int	limit_y;
+    int width;
 
+    width = 15;
 	handle_neg_scale(&x, &width, &y, &height);
 	limit_x = x + width;
 	limit_y = y + height;
@@ -31,7 +34,7 @@ void	draw_rectangle (void *frame, int x, int y, int width, int height)
 	{
 		while(x < limit_x)
 		{
-			pixel(frame, x, y, 0x0000FF00);
+			pixel(frame, x, y, color);
 			x++;
 		}
 		x = limit_x - width;

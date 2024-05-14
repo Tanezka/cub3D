@@ -93,6 +93,22 @@ void	find_wall(t_cub *cube, double radian, double *x, double *y)
 	}
 }
 
+int	check_height(t_cub *cube, double h)
+{
+	if (cube->map_height >= (int)h && h >= 0)
+		return (1);
+	else
+		return (0);
+}
+
+int	check_width(t_cub *cube, double	w)
+{
+	if (cube->map_width >= (int)w && w >= 0)
+		return (1);
+	else
+		return (0);
+}
+
 void	draw_wall(t_cub *cube, double x, double y, double radian, int index)
 {
 	double	x_vector;
@@ -124,6 +140,248 @@ void	draw_wall(t_cub *cube, double x, double y, double radian, int index)
 	}
 	draw_rectangle(cube->frame, index * 15, 540, 15, 540 - (distance - 1)* 54);
 	draw_rectangle(cube->frame, index * 15, 540, 15, -(540 - (distance - 1)* 54));
+}
+
+double  vert_first_area(t_cub *cube, double angle, int index, double radian)
+{
+	double	distance;
+	double	test;
+	double	x;
+	double	y;
+
+	x = cube->pos.x;
+	y = cube->pos.y;
+    x += (int)(x + 1) - x;
+    y -= tan(radian) * (x - cube->pos.x);
+	if (check_height(cube, y - 0.000001f) && check_width(cube, x))
+	{
+		if (cube->map[(int)(y - 0.000001f)][(int)x] == '1')
+		//printf("X %f Y %f\n", x, y);
+		return (fabs((x - cube->pos.x) / cos(radian)));
+	    while (check_height(cube, y - 0.000001f) && check_width(cube, x) && cube->map[(int)(y - 0.000001f)][(int)x] != '1')
+		{
+			x += 1;
+			y -= (tan(radian));
+		}
+		//printf("Vert: wall detected at X %f Y %f\n", x, y);
+	    if (!(check_height(cube, y - 0.000001f) && check_width(cube, x)))
+			return (9999999);
+		return (fabs((x - cube->pos.x) / cos(radian)));
+    }
+	//printf("Patladı: X %f Y %f\n", x, y);
+	return (9999999);
+}
+
+double  vert_second_area(t_cub *cube, double angle, int index, double radian)
+{
+	double	distance;
+	double	test;
+	double	x;
+	double	y;
+
+	x = cube->pos.x;
+	y = cube->pos.y;
+    x -=  x - (int)(x);
+    y -= tan(radian) * (x - cube->pos.x);
+	if (check_height(cube, y - 0.000001f) && check_width(cube, x - 0.000001f))
+	{
+		if (cube->map[(int)(y - 0.000001f)][(int)(x - 0.000001f)] == '1')
+		//printf("X %f Y %f\n", x, y);
+		return (fabs((x - cube->pos.x) / cos(radian)));
+        while (check_height(cube, y - 0.000001f) && check_width(cube, x - 0.000001f) && cube->map[(int)(y - 0.000001f)][(int)(x - 0.000001f)] != '1')
+		{
+			x -= 1;
+			y += (tan(radian));
+		}
+		//printf("Vert: wall detected at X %f Y %f\n", x, y);
+	    if (!(check_height(cube, y - 0.000001f) && check_width(cube, x - 0.000001f)))
+			return (9999999);
+		return (fabs((x - cube->pos.x) / cos(radian)));
+    }
+	//printf("Patladı: X %f Y %f\n", x, y);
+	return (9999999);
+}
+
+double  vert_third_area(t_cub *cube, double angle, int index, double radian)
+{
+	double	distance;
+	double	test;
+	double	x;
+	double	y;
+
+	x = cube->pos.x;
+	y = cube->pos.y;
+    x -=  x - (int)(x);
+    y -= tan(radian) * (x - cube->pos.x);
+	if (check_height(cube, y) && check_width(cube, x - 0.000001f))
+	{
+		if (cube->map[(int)(y)][(int)(x - 0.000001f)] == '1')
+		//printf("X %f Y %f\n", x, y);
+		return (fabs((x - cube->pos.x) / cos(radian)));
+        while (check_height(cube, y) && check_width(cube, x - 0.000001f) && cube->map[(int)y][(int)(x - 0.000001f)] != '1')
+		{
+			x -= 1;
+			y += (tan(radian));
+		}
+		//printf("Vert: wall detected at X %f Y %f\n", x, y);
+	    if (!(check_height(cube, y) && check_width(cube, x - 0.000001f)))
+			return (9999999);
+		return (fabs((x - cube->pos.x) / cos(radian)));
+    }
+	//printf("Patladı: X %f Y %f\n", x, y);
+	return (9999999);
+}
+
+double  vert_forth_area(t_cub *cube, double angle, int index, double radian)
+{
+	double	distance;
+	double	test;
+	double	x;
+	double	y;
+
+	x = cube->pos.x;
+	y = cube->pos.y;
+    x += (int)(x + 1) - x;
+    y -= tan(radian) * (x - cube->pos.x);
+    //printf("maps x:%f y:%f*\n", cube->map_width, cube->map_height);
+	//printf("X %f Y %f\n", x, y);
+	if (check_height(cube, y) && check_width(cube, x))
+	{
+		if (cube->map[(int)(y)][(int)x] == '1')
+        {
+		    //printf("X %f Y %f\n", x, y);
+			return (fabs((x - cube->pos.x) / cos(radian)));
+        }
+        while (check_height(cube, y) && check_width(cube, x) && cube->map[(int)(y)][(int)x] != '1')
+		{
+           // printf("check: ");
+	    //printf("X %f Y %f\n", x, y);
+			x += 1;
+			y -= (tan(radian));
+        //printf("stopp\n");
+		}
+        //printf("stopp\n");
+		//printf("Vert: wall detected at X %f Y %f\n", x, y);
+	    if (!(check_height(cube, y) && check_width(cube, x)))
+		    return (9999999);
+	    return (fabs((x - cube->pos.x) / cos(radian)));
+    }
+	//printf("Patladı: X %f Y %f\n", x, y);
+	return (9999999);
+}
+
+double  hori_first_area(t_cub *cube, double angle, int index, double radian)
+{
+	double	distance;
+	double	test;
+	double	x;
+	double	y;
+
+    y = (int)cube->pos.y;
+	x = cube->pos.x + ((y - cube->pos.y) / tan (radian));
+	if (check_height(cube, y - 0.000001f) && check_width(cube, x))
+	{
+		if (cube->map[(int)(y - 0.000001f)][(int)x] == '1')
+        {
+		    printf("X %f Y %f\n", x, y);
+		    return (fabs((y - cube->pos.y) / sin(radian)));
+        }
+	    while (check_height(cube, y - 0.000001f) && check_width(cube, x) && cube->map[(int)(y - 0.000001f)][(int)x] != '1')
+		{
+			y -= 1;
+			x += 1/tan(radian);
+		}
+		//printf("Hori: wall detected at X %f Y %f\n", x, y);
+	    if (!(check_height(cube, y - 0.000001f) && check_width(cube, x)))
+			return (9999999);
+		return (fabs((y - cube->pos.y) / sin(radian)));
+    }
+	//printf("Patladı: X %f Y %f\n", x, y);
+	return (9999999);
+}
+
+double  hori_second_area(t_cub *cube, double angle, int index, double radian)
+{
+	double	distance;
+	double	test;
+	double	x;
+	double	y;
+
+    y = (int)cube->pos.y;
+	x = cube->pos.x - ((y - cube->pos.y) / tan(radian));
+	if (check_height(cube, y - 0.000001f) && check_width(cube, x - 0.000001f))
+	{
+		if (cube->map[(int)(y - 0.000001f)][(int)(x - 0.000001f)] == '1')
+		//printf("X %f Y %f\n", x, y);
+		return (fabs((y - cube->pos.y) / sin(radian)));
+	    while (check_height(cube, y - 0.000001f) && check_width(cube, x - 0.000001f) && cube->map[(int)(y - 0.000001f)][(int)(x - 0.000001f)] != '1')
+		{
+			y -= 1;
+			x += 1/tan(radian);
+		}
+		//printf("Hori: wall detected at X %f Y %f\n", x, y);
+	    if (!(check_height(cube, y - 0.000001f) && check_width(cube, x - 0.000001f)))
+			return (9999999);
+		return (fabs((y - cube->pos.y) / sin(radian)));
+    }
+	//printf("Patladı: X %f Y %f\n", x, y);
+	return (9999999);
+}
+
+double  hori_third_area(t_cub *cube, double angle, int index, double radian)
+{
+	double	distance;
+	double	test;
+	double	x;
+	double	y;
+
+    y = (int)(cube->pos.y + 1);
+	x = cube->pos.x - ((y - cube->pos.y) / tan(radian));
+	if (check_height(cube, y) && check_width(cube, x - 0.000001f))
+	{
+		if (cube->map[(int)y][(int)(x - 0.000001f)] == '1')
+		//printf("X %f Y %f\n", x, y);
+		return (fabs((y - cube->pos.y) / sin(radian)));
+	    while (check_height(cube, y) && check_width(cube, x - 0.000001f) && cube->map[(int)y][(int)x] != '1')
+		{
+			y += 1;
+			x += 1/tan(radian);
+		}
+		//printf("Hori: wall detected at X %f Y %f\n", x, y);
+	    if (!(check_height(cube, y) && check_width(cube, x - 0.000001f)))
+			return (9999999);
+		return (fabs((y - cube->pos.y) / sin(radian)));
+    }
+	//printf("Patladı: X %f Y %f\n", x, y);
+	return (9999999);
+}
+
+double  hori_forth_area(t_cub *cube, double angle, int index, double radian)
+{
+	double	distance;
+	double	test;
+	double	x;
+	double	y;
+
+    y = (int)(cube->pos.y + 1);
+	x = cube->pos.x - ((y - cube->pos.y) / tan(radian));
+	if (check_height(cube, y) && check_width(cube, x))
+	{
+		if (cube->map[(int)y][(int)x] == '1')
+		//printf("X %f Y %f\n", x, y);
+		return (fabs((y - cube->pos.y) / sin(radian)));
+	    while (check_height(cube, y) && check_width(cube, x) && cube->map[(int)y][(int)x] != '1')
+		{
+			y += 1;
+			x -= 1/tan(radian);
+		}
+		//printf("Hori: wall detected at X %f Y %f\n", x, y);
+	    if (!(check_height(cube, y) && check_width(cube, x)))
+			return (9999999);
+		return (fabs((y - cube->pos.y) / sin(radian)));
+    }
+	//printf("Patladı: X %f Y %f\n", x, y);
+	return (9999999);
 }
 
 double	vertical_calculation(t_cub *cube, double angle, int index, double radian)
@@ -166,7 +424,7 @@ double	vertical_calculation(t_cub *cube, double angle, int index, double radian)
 		{
 			if (cube->map[(int)(y - 0.0000001f)][(int)x] == '1')
 			//printf("X %f Y %f\n", x, y);
-			return ((x - cube->pos.x) / fabs(cos(radian)));
+			return (fabs((x - cube->pos.x) / cos(radian)));
 			while(cube->map[(int)(y - 0.0000001f)] && cube->map[(int)(y - 0.0000001f)][(int)x] && cube->map[(int)(y - 0.0000001f)][(int)x] != '1')
 			{
 				x += 1;
@@ -175,26 +433,11 @@ double	vertical_calculation(t_cub *cube, double angle, int index, double radian)
 			printf("Vert: wall detected at X %f Y %f\n", x, y);
 			if (!(cube->map[(int)(y - 0.0000001f)] && cube->map[(int)(y - 0.000001f)][(int)x]))
 				return (9999999);
-			return ((x - cube->pos.x) / fabs(cos(radian)));
+			return (fabs((x - cube->pos.x) / cos(radian)));
 		}
 	}
 }
 
-int	check_height(t_cub *cube, double h)
-{
-	if (cube->map_height >= (int)h && h >= 0)
-		return (1);
-	else
-		return (0);
-}
-
-int	check_width(t_cub *cube, double	w)
-{
-	if (cube->map_width >= (int)w && w >= 0)
-		return (1);
-	else
-		return (0);
-}
 
 double	horizontal_calculation(t_cub *cube, double angle, int index, double radian)
 {
@@ -208,22 +451,22 @@ double	horizontal_calculation(t_cub *cube, double angle, int index, double radia
 	y = cube->pos.y;
 	if (angle < 180 && angle > 0)
 	{
-		printf("Yukarı\n");
+		//printf("Yukarı\n");
 
 	}
 	else
 	{
-		printf("Aşağı\n");
+	//	printf("Aşağı\n");
 		multip = -1;
 	}
 	y += ((int)y - y) * multip;
 	x += (y - cube->pos.y) / tan(radian);
-	printf("test %f %f\n", fabs(y - cube->pos.y), x);
+	//printf("test %f %f\n", fabs(y - cube->pos.y), x);
 	if (check_height(cube ,(y - (0.0000001 * multip))) && check_width(cube, x))
 	{
 		if (cube->map[(int)(y - (0.0000001f * multip))][(int)x] == '1')
 		{
-			printf("y %f x%f\n", y, x);
+		//	printf("y %f x%f\n", y, x);
 			return (fabs(y - cube->pos.y) / fabs(sin(radian)));
 		}
 		while ((check_height(cube ,(y - (0.0000001 * multip))) && check_width(cube, x) && cube->map[(int)(y - 0.000001f)][(int)x] != '1'))
@@ -231,7 +474,7 @@ double	horizontal_calculation(t_cub *cube, double angle, int index, double radia
 			y += -1 * multip;
 			x += 1 / (tan(radian));
 		}
-		printf("Hori: wall detected at X %f Y %f\n", x, y);
+		//printf("Hori: wall detected at X %f Y %f\n", x, y);
 		if (!(check_height(cube ,(y - (0.0000001 * multip))) && check_width(cube, x)))
 			return (9999999);
 		return (fabs((y - cube->pos.y) / fabs(sin(radian))));
@@ -239,18 +482,85 @@ double	horizontal_calculation(t_cub *cube, double angle, int index, double radia
 	return (9999999);
 }
 
-double	hit_detect(t_cub *cube, double angle, int index, double radian)
+void	hit_detect(t_cub *cube, double angle, int index, double radian)
 {
 	double	vert;
 	double	hori;
+    double  test_radian;
 
-	vert = vertical_calculation(cube, angle, index, radian);
-	hori = horizontal_calculation(cube, angle, index, radian);
+    if (angle > 0 && angle < 90)
+    {
+        printf("First area\n");
+	    vert = vert_first_area(cube, angle, index, radian);
+	    hori = hori_first_area(cube, angle, index, radian);
+        if (vert < hori)
+        {
+		    draw_rectangle(cube->frame, index * 15, 540, 50000, 540 - ((vert * fabs(cos(radian))) - 1)* 54);
+		    draw_rectangle(cube->frame, index * 15, 540, 50000, -(540 - ((vert * fabs(cos(radian)) - 1)* 54)));
+        }
+        else
+        {
+		    //draw_rectangle(cube->frame, index * 15, 540, 5000000, 540 - ((hori * fabs(cos(radian))) - 1) * 54);
+		    //draw_rectangle(cube->frame, index * 15, 540, 5000000, -(540 - ((hori * fabs(cos(radian)) - 1) * 54)));
+        }
+    }
+    else if (angle > 90 && angle < 180)
+    {
+        printf("Second area\n");
+	    vert = vert_second_area(cube, angle, index, radian);
+	    hori = hori_second_area(cube, angle, index, radian);
+        if (vert < hori)
+        {
+		    draw_rectangle(cube->frame, index * 15, 540, 30000, 540 - ((vert * fabs(cos(radian))) - 1)* 54);
+		    draw_rectangle(cube->frame, index * 15, 540, 30000, -(540 - ((vert * fabs(cos(radian)) - 1)* 54)));
+        }
+        else
+        {
+		    //draw_rectangle(cube->frame, index * 15, 540, 5000000, 540 - ((hori * fabs(cos(radian))) - 1)* 54);
+		    //draw_rectangle(cube->frame, index * 15, 540, 5000000, -(540 - ((hori * fabs(cos(radian)) - 1)* 54)));
+        }
+    }
+    else if (angle > 180 && angle < 270)
+    {
+        printf("Third area\n");
+	    vert = vert_third_area(cube, angle, index, radian);
+	    hori = hori_third_area(cube, angle, index, radian);
+        if (vert < hori)
+        {
+		    draw_rectangle(cube->frame, index * 15, 540, 30000, 540 - ((vert * fabs(cos(radian))) - 1)* 54);
+		    draw_rectangle(cube->frame, index * 15, 540, 30000, -(540 - ((vert * fabs(cos(radian)) - 1)* 54)));
+        }
+        else
+        {
+		    //draw_rectangle(cube->frame, index * 15, 540, 300000, 540 - ((hori * fabs(cos(radian))) - 1)* 54);
+		    //draw_rectangle(cube->frame, index * 15, 540, 300000, -(540 - ((hori * fabs(cos(radian)) - 1)* 54)));
+        }
+    }
+	else if (angle > 270 && angle < 360)
+    {
+        printf("Forth area\n");
+	    vert = vert_forth_area(cube, angle, index, radian);
+	    hori = hori_forth_area(cube, angle, index, radian);
+        if (vert < hori)
+        {
+		    draw_rectangle(cube->frame, index * 15, 540, 50000, 540 - ((vert * fabs(cos(radian))) - 1)* 54);
+		    draw_rectangle(cube->frame, index * 15, 540, 50000, -(540 - ((vert * fabs(cos(radian)) - 1)* 54)));
+        }
+        else
+        {
+		    //draw_rectangle(cube->frame, index * 15, 540, 300000, 540 - ((hori * fabs(cos(radian))) - 1)* 54);
+		    //draw_rectangle(cube->frame, index * 15, 540, 300000, -(540 - ((hori * fabs(cos(radian)) - 1)* 54)));
+        }
+    }
 	printf("Vert: %f hori: %f\n", vert, hori);
 	if (vert < hori)
-		return (vert);
-	else
-		return (hori);
+    {
+        printf("%f * %f = %f\n", vert, cos(radian), vert * (cos(radian)));
+    }
+    else
+    {
+        printf("%f * %f = %f\n", hori, cos(radian), vert * (cos(radian)));
+    }
 }
 
 void	ray_calculator(t_cub *cube, double angle, int index)
@@ -264,30 +574,12 @@ void	ray_calculator(t_cub *cube, double angle, int index)
 	if (k >= 0)
 	{
 		radian = (angle *(3.14159265f/180));
-		distance = hit_detect(cube, angle, index, radian);
-		printf("Distance is %f\n", distance);
-		draw_rectangle(cube->frame, index * 15, 540, 15, 540 - (distance - 1)* 54);
-		draw_rectangle(cube->frame, index * 15, 540, 15, -(540 - (distance - 1)* 54));
+		hit_detect(cube, angle, index, radian);
+		//printf("Distance is %f\n Radian is %f\n", distance, cos(radian));
+		//draw_rectangle(cube->frame, index * 15, 540, 15, 540 - ((distance * fabs(cos(radian))) - 1)* 54);
+		//draw_rectangle(cube->frame, index * 15, 540, 15, -(540 - ((distance * fabs(cos(radian)) - 1)* 54)));
 		printf("=================\n");
 	}
-
-	/*if (k >= 0)
-	{
-		if (angle < 0)
-		{
-			angle = 360 + angle;
-		}
-		distance = 0.5f;
-		radian = (angle *(3.14159265f/180));
-		x = cos(radian) * distance;
-		y = -(sin(radian) * distance);
-		find_wall(cube, radian, &x, &y);
-		draw_wall(cube, x, y, radian, index);
-		//printf("%f x: %f, y:%f\n", angle, cube->pos.x + x, cube->pos.y + y);
-		printf("==================\n");
-		k++;
-	}*/
-
 }
 
 void	ray_casting(t_cub *cube, double angle, int index)
@@ -301,6 +593,8 @@ void	ray_casting(t_cub *cube, double angle, int index)
 	else if (angle > 270 && angle < 360)
 		x_pos_y_neg(cube, angle, index);*/
 	printf("angle is this %f\n", angle);
+    if (angle < 0)
+        angle = 360 + angle;
 	if (angle == 0)
 	{
 		printf("wont do nothing\n");
@@ -347,14 +641,31 @@ void	caster(t_cub *cube)
 
 	index = 0;
 	i = *cube->angle + 64;
-	limit = *cube->angle - 63;
-	//i = -6;
-	while (i > limit && as == 0 && index < 1)
+	limit = *cube->angle - 64;
+	//i = -55;
+	while (i > limit && as == 0 && index < 1000)
 	{
 		ray_casting(cube, i, index);
 		i -= 1;
 		index++;
 	}
+    /*if (as > 0)
+        return ;
+		ray_casting(cube, 30, index);
+		index++;
+		ray_casting(cube, 60, index);
+		index++;
+		ray_casting(cube, 120, index);
+		index++;
+		ray_casting(cube, 150, index);
+		index++;
+		ray_casting(cube, 210, index);
+		index++;
+		ray_casting(cube, 240, index);
+		index++;
+		ray_casting(cube, 300, index);
+		index++;
+		ray_casting(cube, 330, index);*/
 	as++;
 }
 
@@ -369,7 +680,10 @@ void	fill_black(t_cub *cube)
 		i = 0;
 		while(i < 1920)
 		{
-			pixel(cube->frame, i, y, 0x000000);
+            if (y > 540)
+			    pixel(cube->frame, i, y, 0xFF0000);
+            else
+			    pixel(cube->frame, i, y, 0xFFFF00);
 			i++;
 		}
 		y++;
@@ -385,6 +699,8 @@ int	raycasting(t_cub *cube)
 
 	//ft_bzero(cube->img.addr, 1920 * 1080 * cube->img.bits_per_pixel / 8);
 	//fill_black(cube);
+    cube->map_width = 10;
+    cube->map_height = 6;
 	caster(cube);
 	mlx_put_image_to_window(cube->mlx, cube->win, cube->frame->img, 0, 0);
 	//printf("0000000000\n");
