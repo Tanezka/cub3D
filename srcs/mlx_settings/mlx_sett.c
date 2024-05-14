@@ -14,7 +14,7 @@ void	mlx_sett(t_cub *cube)
 	cube->frame = &cube->test;
 	draw_rectangle(cube->frame, 960, 540, 15, 540);
 	draw_rectangle(cube->frame, 960, 540, 15, -540);
-    mlx_get_screen_size(cube->mlx, &test1, &test2);
+    //mlx_get_screen_size(cube->mlx, &test1, &test2);
     *cube->s_height = 1080;
     *cube->s_width = 1920;
 	//scale_and_cut(cube->text[0].img.img, 1920, 1080, (int[]){0,0}, (int[]){64,64});
