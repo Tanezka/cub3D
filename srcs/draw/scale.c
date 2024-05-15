@@ -41,3 +41,18 @@ void	draw_rectangle (void *frame, int x, int y, int color, int height)
 		y++;
 	}
 }
+
+void	draw_line (void *frame, int index, int color, int height)
+{
+	int	limit_y;
+	int	y;
+
+	printf("bana gelen height %d\n", height);
+	y = S_HEIGHT/2 - height;
+	limit_y = S_HEIGHT/2 + height;
+	while(y <= limit_y)
+	{
+		pixel(frame, index, y, color);
+		y++;
+	}
+}

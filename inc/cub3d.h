@@ -13,9 +13,10 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4
-# endif
+# define BUFFER_SIZE 4
+# define S_WIDTH 1920
+# define S_HEIGHT 1080
+# define FOV 120
 
 # include <stdbool.h>
 # include <unistd.h>
@@ -64,9 +65,6 @@ typedef struct s_cub
 	char		start_path;
 	double		*angle;
 	double		ang;
-    int         *fov;
-    int         *s_width;
-    int         *s_height;
 	int			f_color[3];
 	int			c_color[3];
 	int			text_x;
@@ -137,4 +135,5 @@ int		check_color(char **split, t_cub *cube, int *nbr);
 int		check_direct_path(char **split, t_cub *cube, int *nbr);
 int		change_angle(int keycode, void *cube);
 t_data	get_image(t_cub *cube, char *path);
+void	draw_line (void *frame, int index, int color, int height);
 #endif

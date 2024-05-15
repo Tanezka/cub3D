@@ -37,7 +37,7 @@ int	main(int ac, char **av)
 	draw_rectangle(cube.frame, 960, 540, 15, 540);//
 	draw_rectangle(cube.frame, 960, 540, 15, -540);//
 	//scale_and_cut(cube.text[0].img.img, 1920, 1080, (int[]){0,0}, (int[]){64,64});//
-	cube.win = mlx_new_window(cube.mlx, 1920, 1080, "cub3D");//
+	//cube.win = mlx_new_window(cube.mlx, 1920, 1080, "cub3D");//
 	print_player(&cube);//
 	mlx_hook(cube.win, 2, 1L << 0, key_press, &cube);//
 	mlx_hook(cube.win, 3, 1L << 1, key_release, &cube);//

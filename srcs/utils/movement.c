@@ -8,10 +8,10 @@ int	change_angle(int keycode, void *cube)
 
     //printf("keycode %d\n", keycode);
 	cub = (t_cub*)cube;
-	if (keycode == 100)
-		*cub->angle -= 1;
-	if (keycode == 97)
-		*cub->angle += 1;
+	if (keycode == 123)
+		*cub->angle -= 5;
+	if (keycode == 124)
+		*cub->angle += 5;
 	if (keycode == 0)
 		cub->pos.x -= 0.1f;
 	if (keycode == 2)
