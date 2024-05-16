@@ -53,6 +53,28 @@ typedef struct s_text
 	int		height;
 }	t_text;
 
+typedef struct s_ray
+{
+	double	*dir_y;
+	double	*dir_x;
+	int		*pos_x;
+	int		*pos_y;
+	double	*side_dist_y;
+	double	*side_dist_x;
+	double	*delta_dist_y;
+	double	*delta_dist_x;
+	double	*perp_wall_dist;
+	double	*camera_x;
+	int		*step_x;
+	int		*step_y;
+	int		*hit;
+	int		*side;
+	int		*line_height;
+	int		*draw_start;
+	int		*draw_end;
+	int		*index;
+}	t_ray;
+
 typedef struct s_cub
 {
 	void		*mlx;
@@ -63,8 +85,13 @@ typedef struct s_cub
 	char		*ea_path;
 	char		**map;
 	char		start_path;
+	double		*dir_y;
+	double		*dir_x;
+	double		*plane_x;
+	double		*plane_y;
 	double		*angle;
 	double		ang;
+	t_ray		**ray_array;
 	int			f_color[3];
 	int			c_color[3];
 	int			text_x;

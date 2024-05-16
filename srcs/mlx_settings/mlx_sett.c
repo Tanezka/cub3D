@@ -8,6 +8,14 @@ void	mlx_sett(t_cub *cube)
 	cube->test.img = mlx_new_image(cube->mlx, 1920, 1080);
 	cube->test.addr = mlx_get_data_addr(cube->test.img, &cube->test.bits_per_pixel, &cube->test.line_length, &cube->test.endian);
 	cube->frame = &cube->test;
+	cube->dir_y = ft_calloc(1, sizeof(double));
+	cube->dir_x = ft_calloc(1, sizeof(double));
+	cube->plane_x = ft_calloc(1, sizeof(double));
+	cube->plane_y = ft_calloc(1, sizeof(double));
+	*cube->dir_x = -1;
+	*cube->dir_y = 0;
+	*cube->plane_x = 0.0f;
+	*cube->plane_y = 0.66f;
 	draw_rectangle(cube->frame, 960, 540, 15, 540);
 	draw_rectangle(cube->frame, 960, 540, 15, -540);
 	//scale_and_cut(cube->text[0].img.img, 1920, 1080, (int[]){0,0}, (int[]){64,64});
