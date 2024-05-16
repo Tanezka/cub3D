@@ -52,9 +52,10 @@ int	parse_file(char *filename, t_cub *cube)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	((line = line_reading(fd)) && (nbr = 0));
+	line = line_reading(fd);
 	if (!line)
 		return (error_message("Empty file"));
+	nbr = 0;
 	while (line)
 	{
 		if (!parse_line(line, cube, &nbr))

@@ -66,7 +66,7 @@ int	check_current_map_line(char *line, t_cub *cube)
 	i = -1;
 	while (line[++i])
 	{
-		if (!ft_strchr("10 NSEW", line[i]))
+		if (!ft_strchr("10 NSEW\t", line[i]))
 		{
 			ft_printf("Error\nInvalid %c character in map\n", line[i]);
 			return (0);

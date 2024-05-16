@@ -13,9 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4
-# endif
+# define BUFFER_SIZE 4
 
 # include <stdbool.h>
 # include <unistd.h>
@@ -62,15 +60,12 @@ typedef struct s_cub
 	char		*ea_path;
 	char		**map;
 	char		start_path;
-	double		*angle;
-	double		ang;
 	int			f_color[3];
 	int			c_color[3];
 	int			text_x;
 	int			text_y;
 	int			map_width;
 	int			map_height;
-	t_data		*frame;
 	t_point		pos;
 	t_keys		keys;
 	t_data		img;
@@ -85,17 +80,8 @@ void	ft_bzero(void *str, size_t n);
 void	init_textures(t_cub *cube);
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_calloc(size_t count, size_t size);
-void	handle_neg_scale(int *x, int *width, int *y, int *height);
-void	*print_player(t_cub *cube);
 void	clean(t_cub *cube);
-void	set_angle(double *angle, char c);
-void	east_ray(t_cub *cube, int index);
-void	ray_casting(t_cub *cube, double angle, int index);
-void	caster(t_cub *cube);
 void	mlx_sett(t_cub *cube);
-void	find_player(char **map, int *x, int *y, double *angle);
-void	pixel(t_data *data, int x, int y, int color);
-void	draw_rectangle (void *frame, int x, int y, int width, int height);
 char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
@@ -132,6 +118,5 @@ int		check_path_color(t_cub *cube);
 int		check_current_map_line(char *line, t_cub *cube);
 int		check_color(char **split, t_cub *cube, int *nbr);
 int		check_direct_path(char **split, t_cub *cube, int *nbr);
-int		change_angle(int keycode, void *cube);
 t_data	get_image(t_cub *cube, char *path);
 #endif
