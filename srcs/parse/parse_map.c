@@ -12,6 +12,7 @@
 
 #include "../../inc/cub3d.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void	resize_map(t_cub *cube)
 {
@@ -81,7 +82,40 @@ int	check_current_map_line(char *line, t_cub *cube)
 			cube->start_path = line[i];
 			cube->pos.x = (double)i;
 			cube->pos.y = (double)cube->map_height;
+			wall_direction(cube);
 		}
 	}
 	return (1);
+}
+
+void	wall_direction(t_cub *cube)
+{
+	if (cube->start_path == 'N')
+	{
+		*cube->dir_x = 0;
+		*cube->dir_y = 1;
+		*cube->plane_y = 0.0f;
+		*cube->plane_x = 0.66f;
+	}
+	else if (cube->start_path == 'S')
+	{
+		*cube->dir_x = 0;
+		*cube->dir_y = -1;
+		*cube->plane_y = 0.0f;
+		*cube->plane_x = -0.66f;
+	}
+	else if (cube->start_path == 'E')
+	{
+		*cube->dir_x = 1;
+		*cube->dir_y = 0;
+		*cube->plane_y = -0.66f;
+		*cube->plane_x = 0.0f;
+	}
+	else if (cube->start_path == 'W')
+	{
+		*cube->dir_x = -1;
+		*cube->dir_y = 0;
+		*cube->plane_y = 0.66f;
+		*cube->plane_x = 0.0f;
+	}
 }

@@ -21,15 +21,15 @@ void	fill_black(t_cub *cube)
 	int	y;
 
 	y = 0;
-	while(y < 1080)
+	while(y < S_HEIGHT)
 	{
 		i = 0;
-		while(i < 1920)
+		while(i < S_WIDTH)
 		{
-            if (y > 540)
-			    pixel(cube->frame, i, y, 14753280);//ceiling renk değişir
+            if (y > S_HEIGHT / 2)
+			    pixel(cube->frame, i, y, cube->f_color_code);//ceiling renk değişir
             else
-			    pixel(cube->frame, i, y, 0xFFFFF0);//floor
+			    pixel(cube->frame, i, y, cube->c_color_code);//floor
 			i++;
 		}
 		y++;
@@ -66,9 +66,9 @@ void	draw_line_test(t_cub *cube, t_ray *ray, int text_x, double step, double tex
 	else
 	{
 		if (*ray->dir_x > 0)
-			text = cube->text[2];
-		else
 			text = cube->text[3];
+		else
+			text = cube->text[2];
 	}
 	i = *ray->draw_start;
 	while(i <= *ray->draw_end)

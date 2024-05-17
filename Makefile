@@ -12,6 +12,7 @@ SRCS =	srcs/main.c \
 		srcs/utils/movement.c \
 		srcs/utils/pixel_put.c\
 		srcs/utils/clean.c \
+		srcs/utils/map_color_code.c \
 		srcs/parse/parse_map.c \
 		srcs/parse/parse.c \
 		srcs/parse/check_closed_map.c \

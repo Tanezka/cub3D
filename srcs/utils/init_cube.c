@@ -41,5 +41,22 @@ int	init_cube2(t_cub *cube)
 	cube->c_color[0] = -1;
 	cube->c_color[1] = -1;
 	cube->c_color[2] = -1;
+	return (init_cube3(cube));
+}
+
+int	init_cube3(t_cub *cube)
+{
+	cube->dir_y = ft_calloc(1, sizeof(double));
+	if (!cube->dir_y)
+		return (0);
+	cube->dir_x = ft_calloc(1, sizeof(double));
+	if (!cube->dir_x)
+		return (0);
+	cube->plane_x = ft_calloc(1, sizeof(double));
+	if (!cube->plane_x)
+		return (0);
+	cube->plane_y = ft_calloc(1, sizeof(double));
+	if (!cube->plane_y)
+		return (0);
 	return (1);
 }

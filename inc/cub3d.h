@@ -14,8 +14,8 @@
 # define CUB3D_H
 
 # define BUFFER_SIZE 4
-# define S_WIDTH 1920
-# define S_HEIGHT 1080
+# define S_WIDTH 1280
+# define S_HEIGHT 720
 # define FOV 120
 
 # include <stdbool.h>
@@ -102,6 +102,8 @@ typedef struct s_cub
 	int			text_y;
 	int			map_width;
 	int			map_height;
+	int			f_color_code;
+	int			c_color_code;
 	t_ray		**ray_array;
 	t_data		*frame;
 	t_point		pos;
@@ -119,6 +121,8 @@ void	*ft_memset(void *b, int c, size_t len);
 void	*ft_calloc(size_t count, size_t size);
 void	clean(t_cub *cube);
 void	mlx_sett(t_cub *cube);
+void	wall_direction(t_cub *cube);
+void	map_color_code(t_cub	*cube);
 void	pixel(t_data *data, int x, int y, int color);
 char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
@@ -138,6 +142,7 @@ int		is_current_param(char *line, t_cub *cube, int *nbr);
 int		ft_atoi(const char *str);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_notnewline(char *s);
+int		init_cube3(t_cub *cube);
 int		ft_linelen(char *s);
 int		ft_strlen(const char *s);
 int		raycasting(t_cub *cube);
