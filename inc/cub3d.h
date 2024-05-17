@@ -24,6 +24,7 @@
 typedef struct s_data
 {
 	void	*img;
+	int		*intaddr;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
@@ -73,6 +74,7 @@ typedef struct s_ray
 	int		*draw_start;
 	int		*draw_end;
 	int		*index;
+	double	wall_hit;
 }	t_ray;
 
 typedef struct s_cub
@@ -166,4 +168,5 @@ int		check_direct_path(char **split, t_cub *cube, int *nbr);
 int		change_angle(t_cub *cube);
 t_data	get_image(t_cub *cube, char *path);
 void	draw_line (void *frame, int index, int color, int height);
+int		get_color(t_data *data, int x, int y);
 #endif

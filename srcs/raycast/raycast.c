@@ -27,7 +27,7 @@ void	fill_black(t_cub *cube)
 		while(i < 1920)
 		{
             if (y > 540)
-			    pixel(cube->frame, i, y, 0xFFF000);//ceiling
+			    pixel(cube->frame, i, y, 14753280);//ceiling renk değişir
             else
 			    pixel(cube->frame, i, y, 0xFFFFF0);//floor
 			i++;
@@ -36,39 +36,55 @@ void	fill_black(t_cub *cube)
 	}
 }
 
-void	draw_line_test(t_cub *cube, t_ray *ray)
+void	calculate_textures(t_cub *cube, t_ray *ray , int side)
+{
+	double	wall_hit;
+	
+	if (side == 0)
+		wall_hit = cube->pos.y + *ray->perp_wall_dist * *ray->dir_y;
+	else
+		wall_hit = cube->pos.x + *ray->perp_wall_dist * *ray->dir_x;
+}
+
+void	draw_line_test(t_cub *cube, t_ray *ray, int text_x, double step, double text_pos)
 {
 	int i;
 	int	color;
+	t_text text;
+	int		text_y;
 
+	text_y = (int)text_pos;
+	text_y += step;
 	color = 0;
 	if (*ray->side == 1)
 	{
 		if (*ray->dir_y > 0)
-			color = 0xFF00000;//east
+			text = cube->text[0];//east
 		else
-			color = 0xFF00FF;//west
+			text = cube->text[1];//west
 	}
 	else
 	{
 		if (*ray->dir_x > 0)
-			color = 0x00FF00;
+			text = cube->text[2];
 		else
-			color = 0x0000FF;
+			text = cube->text[3];
 	}
 	i = *ray->draw_start;
-	//printf("index: %d\ndraw_start: %d\ndraw_end: %d\n", *ray->index, *ray->draw_start, *ray->draw_end);
-	//draw_line(cube->frame, 5, 5000000, 300);
-	//pixel(cube->frame, 15, 15, 500000);
 	while(i <= *ray->draw_end)
 	{
-		pixel(cube->frame, *ray->index, i, color);
+		text_y = (int)text_pos;
+		text_pos += step;
+		pixel(cube->frame, *ray->index, i, text.img.intaddr[64 * text_y + text_x]);
 		i++;
 	}
 }
 
 void	ray_dda(t_cub *cube, t_ray *ray)
 {
+	int		text_x;
+	double	step;
+	double	text_pos;
 	//printf("test [%d]\n", *ray->pos_x);
 	while (*ray->hit == 0)
 	{
@@ -108,7 +124,15 @@ void	ray_dda(t_cub *cube, t_ray *ray)
 	*ray->draw_end = *ray->line_height / 2 + S_HEIGHT / 2;
 	if (*ray->draw_end >= S_HEIGHT)
 		*ray->draw_end = S_HEIGHT - 1;
-	draw_line_test(cube, ray);
+	if (*ray->side == 0)
+		ray->wall_hit = cube->pos.y + *ray->perp_wall_dist * *ray->dir_y;
+	else
+		ray->wall_hit = cube->pos.x + *ray->perp_wall_dist * *ray->dir_x;
+	ray->wall_hit -= (int)ray->wall_hit;
+	text_x = 64 - (int)(ray->wall_hit * 64);
+	step = (double)64 / *ray->line_height;
+	text_pos = (*ray->draw_start - S_HEIGHT / 2 + *ray->line_height / 2) * step;
+	draw_line_test(cube, ray, text_x, step, text_pos);
 }
 
 void	ray_malloc(t_ray *ray)

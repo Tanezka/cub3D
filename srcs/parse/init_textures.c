@@ -26,6 +26,8 @@ void	init_textures(t_cub *cube)
 
 int	texture_load(t_cub *cube, t_text *text, char *path)
 {
+	int	a;
+
 	if (!path || ft_strlen(path) == 0)
 		return (0);
 	text->img.img = mlx_xpm_file_to_image(cube->mlx, \
@@ -35,6 +37,7 @@ int	texture_load(t_cub *cube, t_text *text, char *path)
 	text->img.addr = mlx_get_data_addr(text->img.img, \
 	&text->img.bits_per_pixel, &text->img.line_length, \
 	&text->img.endian);
+	text->img.intaddr = (int *)mlx_get_data_addr(text->img.img, &a, &a, &a);
 	if (text->img.addr == NULL)
 		return (0);
 	return (1);
