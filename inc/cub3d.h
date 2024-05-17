@@ -14,6 +14,9 @@
 # define CUB3D_H
 
 # define BUFFER_SIZE 4
+# define S_WIDTH 1920
+# define S_HEIGHT 1080
+# define FOV 120
 
 # include <stdbool.h>
 # include <unistd.h>
@@ -50,6 +53,28 @@ typedef struct s_text
 	int		height;
 }	t_text;
 
+typedef struct s_ray
+{
+	double	*dir_y;
+	double	*dir_x;
+	int		*pos_x;
+	int		*pos_y;
+	double	*side_dist_y;
+	double	*side_dist_x;
+	double	*delta_dist_y;
+	double	*delta_dist_x;
+	double	*perp_wall_dist;
+	double	*camera_x;
+	int		*step_x;
+	int		*step_y;
+	int		*hit;
+	int		*side;
+	int		*line_height;
+	int		*draw_start;
+	int		*draw_end;
+	int		*index;
+}	t_ray;
+
 typedef struct s_cub
 {
 	void		*mlx;
@@ -60,6 +85,16 @@ typedef struct s_cub
 	char		*ea_path;
 	char		**map;
 	char		start_path;
+	double		*dir_y;
+	double		*dir_x;
+	double		*plane_x;
+	double		*plane_y;
+	double		*angle;
+	double		ang;
+	double		old_dirx;
+	double		old_planex;
+	double		rot_speed;
+	t_ray		**ray_array;
 	int			f_color[3];
 	int			c_color[3];
 	int			text_x;
@@ -82,6 +117,9 @@ void	*ft_memset(void *b, int c, size_t len);
 void	*ft_calloc(size_t count, size_t size);
 void	clean(t_cub *cube);
 void	mlx_sett(t_cub *cube);
+void	find_player(char **map, int *x, int *y, double *angle);
+void	pixel(t_data *data, int x, int y, int color);
+void	draw_rectangle (void *frame, int x, int y, int color, int height);
 char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
@@ -118,5 +156,7 @@ int		check_path_color(t_cub *cube);
 int		check_current_map_line(char *line, t_cub *cube);
 int		check_color(char **split, t_cub *cube, int *nbr);
 int		check_direct_path(char **split, t_cub *cube, int *nbr);
+int		change_angle(t_cub *cube);
 t_data	get_image(t_cub *cube, char *path);
+void	draw_line (void *frame, int index, int color, int height);
 #endif

@@ -9,6 +9,8 @@ SRCS =	srcs/main.c \
 		srcs/utils/handle_keys.c \
 		srcs/utils/init_cube.c \
 		srcs/utils/map_path_check.c \
+		srcs/utils/movement.c \
+		srcs/utils/pixel_put.c\
 		srcs/utils/clean.c \
 		srcs/parse/parse_map.c \
 		srcs/parse/parse.c \
@@ -16,7 +18,6 @@ SRCS =	srcs/main.c \
 		srcs/parse/init_textures.c \
 		srcs/parse/map_param_control.c \
 		srcs/raycast/raycast.c \
-		srcs/draw/scale.c \
 		srcs/mlx_settings/mlx_sett.c \
 		library/line_read/line_reading.c \
 		library/line_read/line_reading_utils.c \
