@@ -13,7 +13,6 @@
 #include "../../inc/cub3d.h"
 #include "../../library/mlx/mlx.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 int	is_current_param(char *line, t_cub *cube, int *nbr)
 {
@@ -47,7 +46,8 @@ int	check_color(char **split, t_cub *cube, int *nbr)
 	int		i;
 	int		n;
 
-	((i = -1) && (n = 0));
+	i = -1;
+	n = 0;
 	if (split_len(split) != 2)
 		return (0);
 	colors = ft_split(split[1], ',');
@@ -58,7 +58,7 @@ int	check_color(char **split, t_cub *cube, int *nbr)
 	while (++i < 3 && n != -1)
 	{
 		n = ft_atoi(colors[i]);
-		if (n < 0 | n > 255)
+		if (n < 0 || n > 255)
 			n = -1;
 		else if (!ft_strcmp(ft_str_toupper(split[0]), "F"))
 			cube->f_color[i] = n;
@@ -66,8 +66,7 @@ int	check_color(char **split, t_cub *cube, int *nbr)
 			cube->c_color[i] = n;
 	}
 	split_free(colors);
-	*nbr += 1;
-	return (n != -1);
+	return (*nbr += 1, n != -1);
 }
 
 int	check_direct_path(char **split, t_cub *cube, int *nbr)

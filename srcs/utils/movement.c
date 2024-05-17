@@ -1,6 +1,4 @@
 #include "../../inc/cub3d.h"
-#include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 
 void	rotate_right(t_cub *cube)
