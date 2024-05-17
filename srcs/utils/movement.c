@@ -5,56 +5,76 @@
 
 void	rotate_right(t_cub *cube)
 {
-	double	old_dirx;
-	double	old_planex;
-	double	rot_speed;
-
-	rot_speed = 0.05f;
-	old_dirx = *cube->dir_x;
-	*cube->dir_x = *cube->dir_x * cos(-rot_speed) - *cube->dir_y * sin(-rot_speed);
-	*cube->dir_y = old_dirx * sin(-rot_speed) + *cube->dir_y * cos(-rot_speed);
-	old_planex = *cube->plane_x;
-	*cube->plane_x = *cube->plane_x * cos(-rot_speed)
-		- *cube->plane_y * sin(-rot_speed);
-	*cube->plane_y = old_planex * sin(-rot_speed)
-		+ *cube->plane_y * cos(-rot_speed);
+	cube->rot_speed = 0.15f;
+	cube->old_dirx = *cube->dir_x;
+	*cube->dir_x = *cube->dir_x * cos(-cube->rot_speed) - *cube->dir_y * sin(-cube->rot_speed);
+	*cube->dir_y = cube->old_dirx * sin(-cube->rot_speed) + *cube->dir_y * cos(-cube->rot_speed);
+	cube->old_planex = *cube->plane_x;
+	*cube->plane_x = *cube->plane_x * cos(-cube->rot_speed)
+		- *cube->plane_y * sin(-cube->rot_speed);
+	*cube->plane_y = cube->old_planex * sin(-cube->rot_speed)
+		+ *cube->plane_y * cos(-cube->rot_speed);
 }
 
-int	change_angle(int keycode, void *cube)
+void	rotate_left(t_cub *cube)
 {
-	t_cub	*cub;
-	double	old_dirx;
-	double	old_planex;
-	double	rot_speed;
+	cube->old_dirx = *cube->dir_x;
+	*cube->dir_x = *cube->dir_x * cos(cube->rot_speed) - *cube->dir_y * sin(cube->rot_speed);
+	*cube->dir_y = cube->old_dirx * sin(cube->rot_speed) + *cube->dir_y * cos(cube->rot_speed);
+	cube->old_planex = *cube->plane_x;
+	*cube->plane_x = *cube->plane_x * cos(cube->rot_speed) - *cube->plane_y * sin(cube->rot_speed);
+	*cube->plane_y = cube->old_planex * sin(cube->rot_speed) + *cube->plane_y * cos(cube->rot_speed);
+}
 
-	rot_speed = 0.05f;
-	cub = (t_cub*)cube;
+void	move_straight(t_cub *cube)
+{
+	if (cube->map[(int)(cube->pos.y)][(int)(cube->pos.x + *cube->dir_x * 0.1)] != '1')
+		cube->pos.x += *cube->dir_x * 0.1;
+	if (cube->map[(int)(cube->pos.y + *cube->dir_y * 0.1)][(int)(cube->pos.x)] != '1')
+		cube->pos.y += *cube->dir_y * 0.1;
+}
+
+void	move_back(t_cub *cube)
+{
+	if (cube->map[(int)(cube->pos.y)][(int)(cube->pos.x - *cube->dir_x * 0.1)] != '1')
+		cube->pos.x -= *cube->dir_x * 0.1;
+	if (cube->map[(int)(cube->pos.y - *cube->dir_y * 0.1)][(int)(cube->pos.x)] != '1')
+		cube->pos.y -= *cube->dir_y * 0.1;
+}
+
+void	move_left(t_cub *cube)
+{
+	if (cube->map[(int)(cube->pos.y)][(int)(cube->pos.x - *cube->plane_x * 0.1)] != '1')
+		cube->pos.x -= *cube->plane_x * 0.1;
+	if (cube->map[(int)(cube->pos.y - *cube->plane_y * 0.1)][(int)(cube->pos.x)] != '1')
+		cube->pos.y -= *cube->plane_y * 0.1;
+}
+
+void	move_right(t_cub *cube)
+{
+	if (cube->map[(int)(cube->pos.y)][(int)(cube->pos.x + *cube->plane_x * 0.1)] != '1')
+		cube->pos.x += *cube->plane_x * 0.1;
+	if (cube->map[(int)(cube->pos.y + *cube->plane_y * 0.1)][(int)(cube->pos.x)] != '1')
+		cube->pos.y += *cube->plane_y * 0.1;
+}
+
+
+int	change_angle(int keycode, t_cub *cube)
+{
+	cube->rot_speed = 0.15f;
 	printf("keycode %d\n", keycode);
 	if (keycode == 123)
-	{
-		old_dirx = *cub->dir_x;
-		*cub->dir_x = *cub->dir_x * cos(rot_speed) - *cub->dir_y * sin(rot_speed);
-		*cub->dir_y = old_dirx * sin(rot_speed) + *cub->dir_y * cos(rot_speed);
-		old_planex = *cub->plane_x;
-		*cub->plane_x = *cub->plane_x * cos(rot_speed) - *cub->plane_y * sin(rot_speed);
-		*cub->plane_y = old_planex * sin(rot_speed) + *cub->plane_y * cos(rot_speed);
-	}
+		rotate_left(cube);
 	if (keycode == 124)
-		rotate_right(cub);
-
+		rotate_right(cube);
+	if (keycode == 13)
+		move_straight(cube);
+	if (keycode == 1)
+		move_back(cube);
+	if (keycode == 0)
+		move_left(cube);
+	if (keycode == 2)
+		move_right(cube);
 	return(0);
 }
-/*
-	*123 left arrow, 124 right arrow
-	w = 13
-	a = 0
-	s = 1
-	d = 2
-	* 
-	* 
-	* */
 
-void	move(t_cub *cube)
-{
-
-}

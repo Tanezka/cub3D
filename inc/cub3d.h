@@ -91,6 +91,9 @@ typedef struct s_cub
 	double		*plane_y;
 	double		*angle;
 	double		ang;
+	double		old_dirx;
+	double		old_planex;
+	double		rot_speed;
 	t_ray		**ray_array;
 	int			f_color[3];
 	int			c_color[3];
@@ -160,7 +163,7 @@ int		check_path_color(t_cub *cube);
 int		check_current_map_line(char *line, t_cub *cube);
 int		check_color(char **split, t_cub *cube, int *nbr);
 int		check_direct_path(char **split, t_cub *cube, int *nbr);
-int		change_angle(int keycode, void *cube);
+int		change_angle(int keycode, t_cub *cube);
 t_data	get_image(t_cub *cube, char *path);
 void	draw_line (void *frame, int index, int color, int height);
 #endif
