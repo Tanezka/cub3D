@@ -163,7 +163,7 @@ int		check_path_color(t_cub *cube);
 int		check_current_map_line(char *line, t_cub *cube);
 int		check_color(char **split, t_cub *cube, int *nbr);
 int		check_direct_path(char **split, t_cub *cube, int *nbr);
-int		change_angle(int keycode, t_cub *cube);
+int		change_angle(t_cub *cube);
 t_data	get_image(t_cub *cube, char *path);
 void	draw_line (void *frame, int index, int color, int height);
 #endif

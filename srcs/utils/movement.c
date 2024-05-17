@@ -5,7 +5,6 @@
 
 void	rotate_right(t_cub *cube)
 {
-	cube->rot_speed = 0.15f;
 	cube->old_dirx = *cube->dir_x;
 	*cube->dir_x = *cube->dir_x * cos(-cube->rot_speed) - *cube->dir_y * sin(-cube->rot_speed);
 	*cube->dir_y = cube->old_dirx * sin(-cube->rot_speed) + *cube->dir_y * cos(-cube->rot_speed);
@@ -59,21 +58,20 @@ void	move_right(t_cub *cube)
 }
 
 
-int	change_angle(int keycode, t_cub *cube)
+int	change_angle(t_cub *cube)
 {
-	cube->rot_speed = 0.15f;
-	printf("keycode %d\n", keycode);
-	if (keycode == 123)
+	cube->rot_speed = 0.05f;
+	if (cube->keys.left == true)
 		rotate_left(cube);
-	if (keycode == 124)
+	if (cube->keys.right == true)
 		rotate_right(cube);
-	if (keycode == 13)
+	if (cube->keys.w == true)
 		move_straight(cube);
-	if (keycode == 1)
+	if (cube->keys.s == true)
 		move_back(cube);
-	if (keycode == 0)
+	if (cube->keys.a == true)
 		move_left(cube);
-	if (keycode == 2)
+	if (cube->keys.d == true)
 		move_right(cube);
 	return(0);
 }

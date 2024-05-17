@@ -44,14 +44,14 @@ void	draw_line_test(t_cub *cube, t_ray *ray)
 	color = 0;
 	if (*ray->side == 1)
 	{
-		if (*ray->dir_x == 1)
+		if (*ray->dir_y > 0)
 			color = 0xFF00000;//east
 		else
 			color = 0xFF00FF;//west
 	}
 	else
 	{
-		if (*ray->dir_y == 0)
+		if (*ray->dir_x > 0)
 			color = 0x00FF00;
 		else
 			color = 0x0000FF;
@@ -91,7 +91,7 @@ void	ray_dda(t_cub *cube, t_ray *ray)
 		}
 		if (cube->map[*ray->pos_y][*ray->pos_x] == '1')
 		{
-			printf("[x %d, y%d]\n", *ray->pos_x, *ray->pos_y);
+			//printf("[x %d, y%d]\n", *ray->pos_x, *ray->pos_y);
 			*ray->hit = 1;
 		}
 	}
@@ -202,6 +202,7 @@ void	caster_v2(t_cub *cube)
 
 int	raycasting(t_cub *cube)
 {
+	change_angle(cube);
 	fill_black(cube);
 	caster_v2(cube);
 	mlx_put_image_to_window(cube->mlx, cube->win, cube->frame->img, 0, 0);

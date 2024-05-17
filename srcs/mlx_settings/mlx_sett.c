@@ -26,6 +26,4 @@ void	mlx_sett(t_cub *cube)
 	if (cube->img.addr == NULL)
 		error_message("Failed to create image");
 	cube->frame = &cube->img;
-	mlx_do_key_autorepeaton(cube->mlx);
-	mlx_key_hook(cube->win, fnc1, cube);
 }
