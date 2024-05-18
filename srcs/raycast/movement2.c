@@ -24,6 +24,10 @@ void	move_right(t_cub *cube)
 
 int	change_angle(t_cub *cube)
 {
+	static int k = 0;
+
+	if (k++ == 0)
+		rotate_left(cube);
 	cube->rot_speed = 0.05f;
 	if (cube->keys.left == true)
 		rotate_left(cube);

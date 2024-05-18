@@ -45,21 +45,21 @@ void	draw_line_test(t_cub *cube, t_ray *ray)
 	ray->text_y = (int)ray->text_pos;
 	ray->text_y += ray->step;
 	color = 0;
-	if (*ray->side == 1)
+	if (ray->side == 1)
 	{
-		if (*ray->dir_y > 0)
+		if (ray->dir_y > 0)
 			text = cube->text[0];
 		else
 			text = cube->text[1];
 	}
 	else
 	{
-		if (*ray->dir_x > 0)
+		if (ray->dir_x > 0)
 			text = cube->text[3];
 		else
 			text = cube->text[2];
 	}
-	i = *ray->draw_start;
+	i = ray->draw_start;
 	draw_line_test2(cube, ray, text, i);
 }
 

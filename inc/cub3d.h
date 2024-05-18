@@ -56,29 +56,29 @@ typedef struct s_text
 
 typedef struct s_ray
 {
-	double	*dir_y;
-	double	*dir_x;
-	double	*side_dist_y;
-	double	*side_dist_x;
-	double	*delta_dist_y;
-	double	*delta_dist_x;
-	double	*perp_wall_dist;
-	double	*camera_x;
+	double	dir_y;
+	double	dir_x;
+	double	side_dist_y;
+	double	side_dist_x;
+	double	delta_dist_y;
+	double	delta_dist_x;
+	double	perp_wall_dist;
+	double	camera_x;
 	double	step;
 	double	text_pos;
 	double	wall_hit;
-	int		*pos_y;
-	int		*pos_x;
-	int		*step_x;
-	int		*step_y;
+	int		pos_y;
+	int		pos_x;
+	int		step_x;
+	int		step_y;
 	int		text_x;
 	int		text_y;
-	int		*hit;
-	int		*side;
-	int		*line_height;
-	int		*draw_start;
-	int		*draw_end;
-	int		*index;
+	int		hit;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		index;
 }	t_ray;
 
 typedef struct s_cub
