@@ -14,21 +14,21 @@
 
 void	move_right(t_cub *cube)
 {
-	if (cube->map[(int)(cube->pos.y)][(int)(cube->pos.x + *cube->plane_x \
-	* 0.1)] != '1')
-		cube->pos.x += *cube->plane_x * 0.1;
-	if (cube->map[(int)(cube->pos.y + *cube->plane_y * 0.1)][(int) \
+	if (cube->map[(int)(cube->pos.y)][(int)(cube->pos.x + cube->plane_x \
+	* 0.05)] != '1')
+		cube->pos.x += cube->plane_x * 0.05;
+	if (cube->map[(int)(cube->pos.y + cube->plane_y * 0.05)][(int) \
 	(cube->pos.x)] != '1')
-		cube->pos.y += *cube->plane_y * 0.1;
+		cube->pos.y += cube->plane_y * 0.05;
 }
 
 int	change_angle(t_cub *cube)
 {
-	static int k = 0;
+	static int	k = 0;
 
 	if (k++ == 0)
 		rotate_left(cube);
-	cube->rot_speed = 0.05f;
+	cube->rot_speed = 0.03f;
 	if (cube->keys.left == true)
 		rotate_left(cube);
 	if (cube->keys.right == true)

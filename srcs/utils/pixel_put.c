@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include <stdio.h>
 
 void	pixel(t_data *data, int x, int y, int color)
 {

@@ -12,8 +12,6 @@
 
 #include "../../library/mlx/mlx.h"
 #include "../../inc/cub3d.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 void	mlx_sett(t_cub *cube)
 {

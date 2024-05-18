@@ -66,7 +66,8 @@ int	parse_file(char *filename, t_cub *cube)
 	free(line);
 	if (!cube->start_path)
 		return (error_message("Missing path in file {N, S, E, W}"));
-	resize_map(cube);
+	if (!resize_map(cube))
+		return (0);
 	check_closed_map(cube);
 	return (1);
 }

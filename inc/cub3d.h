@@ -16,7 +16,6 @@
 # define BUFFER_SIZE 4
 # define S_WIDTH 1280
 # define S_HEIGHT 720
-# define FOV 120
 
 # include <stdbool.h>
 # include <unistd.h>
@@ -91,12 +90,10 @@ typedef struct s_cub
 	char		*ea_path;
 	char		**map;
 	char		start_path;
-	double		*dir_y;
-	double		*dir_x;
-	double		*plane_x;
-	double		*plane_y;
-	double		*angle;
-	double		ang;
+	double		dir_y;
+	double		dir_x;
+	double		plane_x;
+	double		plane_y;
 	double		old_dirx;
 	double		old_planex;
 	double		rot_speed;
@@ -106,7 +103,6 @@ typedef struct s_cub
 	int			map_height;
 	int			f_color_code;
 	int			c_color_code;
-	t_ray		**ray_array;
 	t_data		*frame;
 	t_point		pos;
 	t_keys		keys;
@@ -114,7 +110,6 @@ typedef struct s_cub
 	t_text		text[4];
 }	t_cub;
 void	cube_free(t_cub *cube);
-void	resize_map(t_cub *cube);
 void	all_free(t_cub *var);
 void	move_right(t_cub *cube);
 void	split_free(char **split);
@@ -147,6 +142,7 @@ char	*ft_str_toupper(char *str);
 int		split_len(char **split);
 int		ft_printf(const char *str, ...);
 int		ft_toupper(int c);
+int		resize_map(t_cub *cube);
 int		error_message(char *message);
 int		map_path_check(char *map_path);
 int		parse_file(char *filename, t_cub *cube);
@@ -177,5 +173,5 @@ int		check_direct_path(char **split, t_cub *cube, int *nbr);
 int		change_angle(t_cub *cube);
 t_data	get_image(t_cub *cube, char *path);
 t_ray	text_initiator(t_ray *ray, t_cub *cube);
-t_ray	*ray_initiator(t_cub *cube, int index);
+void	ray_initiator(t_cub *cube, int index);
 #endif

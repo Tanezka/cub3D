@@ -12,9 +12,8 @@
 
 #include "../../inc/cub3d.h"
 #include <stdlib.h>
-#include <stdio.h>
 
-void	resize_map(t_cub *cube)
+int	resize_map(t_cub *cube)
 {
 	int		i;
 	int		j;
@@ -26,6 +25,8 @@ void	resize_map(t_cub *cube)
 		if (ft_strlen(cube->map[i]) == cube->map_width)
 			continue ;
 		tmp = ft_calloc(cube->map_width + 1, sizeof(char));
+		if (!tmp)
+			return (0);
 		j = -1;
 		while (cube->map[i][++j])
 			tmp[j] = cube->map[i][j];
@@ -35,6 +36,7 @@ void	resize_map(t_cub *cube)
 		free(cube->map[i]);
 		cube->map[i] = tmp;
 	}
+	return (1);
 }
 
 int	parse_map(char *line, t_cub *cube)
@@ -51,6 +53,8 @@ int	parse_map(char *line, t_cub *cube)
 	if (width > cube->map_width)
 		cube->map_width = width;
 	new_map = ft_calloc(cube->map_height + 1, sizeof(char *));
+	if (!new_map)
+		return (0);
 	while (cube->map[++i])
 		new_map[i] = cube->map[i];
 	new_map[i] = line;

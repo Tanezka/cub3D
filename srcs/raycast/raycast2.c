@@ -90,28 +90,26 @@ void	ray_dda(t_cub *cube, t_ray *ray)
 	draw_line_test(cube, ray);
 }
 
-t_ray	*ray_initiator(t_cub *cube, int index)
+void	ray_initiator(t_cub *cube, int index)
 {
-	t_ray	*ray;
+	t_ray	ray;
 
-	ray = ft_calloc(1, sizeof(t_ray));
-	ray->index = index;
-	ray->camera_x = 2 * index / (double)S_WIDTH - 1;
-	ray->dir_x = (*cube->dir_x) + ((*cube->plane_x) * (ray->camera_x));
-	ray->dir_y = (*cube->dir_y) + ((*cube->plane_y) * (ray->camera_x));
-	ray->pos_x = (int)cube->pos.x;
-	ray->pos_y = (int)cube->pos.y;
-	if (ray->dir_x == 0)
-		ray->delta_dist_x = 1;
+	ray.index = index;
+	ray.camera_x = 2 * index / (double)S_WIDTH - 1;
+	ray.dir_x = (cube->dir_x) + ((cube->plane_x) * (ray.camera_x));
+	ray.dir_y = (cube->dir_y) + ((cube->plane_y) * (ray.camera_x));
+	ray.pos_x = (int)cube->pos.x;
+	ray.pos_y = (int)cube->pos.y;
+	if (ray.dir_x == 0)
+		ray.delta_dist_x = 1;
 	else
-		ray->delta_dist_x = fabs(1 / ray->dir_x);
-	if (ray->dir_y == 0)
-		ray->delta_dist_y = 1;
+		ray.delta_dist_x = fabs(1 / ray.dir_x);
+	if (ray.dir_y == 0)
+		ray.delta_dist_y = 1;
 	else
-		ray->delta_dist_y = fabs(1 / ray->dir_y);
-	text_initiator(ray, cube);
-	ray_dda(cube, ray);
-	return (ray);
+		ray.delta_dist_y = fabs(1 / ray.dir_y);
+	text_initiator(&ray, cube);
+	ray_dda(cube, &ray);
 }
 
 void	draw_line_test2(t_cub *cube, t_ray *ray, t_text text, int i)

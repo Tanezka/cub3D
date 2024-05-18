@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = ##-Wall -Wextra -Werror -g
 LIBS = -framework OpenGL -framework AppKit library/mlx/libmlx.a
 SRCS =	srcs/main.c \
 		srcs/utils/free.c \

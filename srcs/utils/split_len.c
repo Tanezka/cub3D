@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 int	split_len(char **split)
 {

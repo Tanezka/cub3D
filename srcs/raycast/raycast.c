@@ -12,8 +12,6 @@
 
 #include "../../inc/cub3d.h"
 #include "../../library/mlx/mlx.h"
-#include <math.h>
-#include <stdio.h>
 
 void	fill_black(t_cub *cube)
 {
@@ -69,7 +67,7 @@ void	fill_ray_array(t_cub *cube)
 
 	index = -1;
 	while (++index < S_WIDTH)
-		cube->ray_array[index] = ray_initiator(cube, index);
+		ray_initiator(cube, index);
 }
 
 int	raycasting(t_cub *cube)
