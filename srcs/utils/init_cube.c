@@ -58,5 +58,30 @@ int	init_cube3(t_cub *cube)
 	cube->plane_y = ft_calloc(1, sizeof(double));
 	if (!cube->plane_y)
 		return (0);
+	cube->ray_array = ft_calloc(S_WIDTH, sizeof(t_ray *));
+	if (!cube->ray_array)
+		return (0);
 	return (1);
+}
+
+void	ray_malloc(t_ray *ray)
+{
+	ray->dir_y = ft_calloc(1, sizeof(double));
+	ray->dir_x = ft_calloc(1, sizeof(double));
+	ray->pos_x = ft_calloc(1, sizeof(int));
+	ray->pos_y = ft_calloc(1, sizeof(int));
+	ray->side_dist_x = ft_calloc(1, sizeof(double));
+	ray->side_dist_y = ft_calloc(1, sizeof(double));
+	ray->delta_dist_x = ft_calloc(1, sizeof(double));
+	ray->delta_dist_y = ft_calloc(1, sizeof(double));
+	ray->perp_wall_dist = ft_calloc(1, sizeof(double));
+	ray->step_x = ft_calloc(1, sizeof(int));
+	ray->step_y = ft_calloc(1, sizeof(int));
+	ray->hit = ft_calloc(1, sizeof(int));
+	ray->side = ft_calloc(1, sizeof(int));
+	ray->line_height = ft_calloc(1, sizeof(int));
+	ray->draw_start = ft_calloc(1, sizeof(int));
+	ray->draw_end = ft_calloc(1, sizeof(int));
+	ray->camera_x = ft_calloc(1, sizeof(double));
+	ray->index = ft_calloc(1, sizeof(int));
 }

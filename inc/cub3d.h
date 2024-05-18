@@ -24,8 +24,8 @@
 typedef struct s_data
 {
 	void	*img;
-	int		*intaddr;
 	char	*addr;
+	int		*int_addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -58,23 +58,27 @@ typedef struct s_ray
 {
 	double	*dir_y;
 	double	*dir_x;
-	int		*pos_x;
-	int		*pos_y;
 	double	*side_dist_y;
 	double	*side_dist_x;
 	double	*delta_dist_y;
 	double	*delta_dist_x;
 	double	*perp_wall_dist;
 	double	*camera_x;
+	double	step;
+	double	text_pos;
+	double	wall_hit;
+	int		*pos_y;
+	int		*pos_x;
 	int		*step_x;
 	int		*step_y;
+	int		text_x;
+	int		text_y;
 	int		*hit;
 	int		*side;
 	int		*line_height;
 	int		*draw_start;
 	int		*draw_end;
 	int		*index;
-	double	wall_hit;
 }	t_ray;
 
 typedef struct s_cub
@@ -98,8 +102,6 @@ typedef struct s_cub
 	double		rot_speed;
 	int			f_color[3];
 	int			c_color[3];
-	int			text_x;
-	int			text_y;
 	int			map_width;
 	int			map_height;
 	int			f_color_code;
@@ -114,7 +116,14 @@ typedef struct s_cub
 void	cube_free(t_cub *cube);
 void	resize_map(t_cub *cube);
 void	all_free(t_cub *var);
+void	move_right(t_cub *cube);
 void	split_free(char **split);
+void	rotate_left(t_cub *cube);
+void	rotate_right(t_cub *cube);
+void	draw_line_test2(t_cub *cube, t_ray *ray, t_text text, int i);
+void	move_straight(t_cub *cube);
+void	move_left(t_cub *cube);
+void	move_back(t_cub *cube);
 void	ft_bzero(void *str, size_t n);
 void	init_textures(t_cub *cube);
 void	*ft_memset(void *b, int c, size_t len);
@@ -122,6 +131,10 @@ void	*ft_calloc(size_t count, size_t size);
 void	clean(t_cub *cube);
 void	mlx_sett(t_cub *cube);
 void	wall_direction(t_cub *cube);
+void	ray_malloc(t_ray *ray);
+void	draw_line_test(t_cub *cube, t_ray *ray);
+void	wall_direction2(t_cub *cube);
+void	ray_dda2(t_cub *cube, t_ray *ray);
 void	map_color_code(t_cub	*cube);
 void	pixel(t_data *data, int x, int y, int color);
 char	**ft_split(char const *s, char c);
@@ -163,4 +176,6 @@ int		check_color(char **split, t_cub *cube, int *nbr);
 int		check_direct_path(char **split, t_cub *cube, int *nbr);
 int		change_angle(t_cub *cube);
 t_data	get_image(t_cub *cube, char *path);
+t_ray	text_initiator(t_ray *ray, t_cub *cube);
+t_ray	*ray_initiator(t_cub *cube, int index);
 #endif

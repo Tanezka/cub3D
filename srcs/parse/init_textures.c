@@ -37,7 +37,7 @@ int	texture_load(t_cub *cube, t_text *text, char *path)
 	text->img.addr = mlx_get_data_addr(text->img.img, \
 	&text->img.bits_per_pixel, &text->img.line_length, \
 	&text->img.endian);
-	text->img.intaddr = (int *)mlx_get_data_addr(text->img.img, &a, &a, &a);
+	text->img.int_addr = (int *)mlx_get_data_addr(text->img.img, &a, &a, &a);
 	if (text->img.addr == NULL)
 		return (0);
 	return (1);
