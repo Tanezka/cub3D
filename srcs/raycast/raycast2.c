@@ -114,13 +114,13 @@ void	ray_initiator(t_cub *cube, int index)
 
 void	draw_line_test2(t_cub *cube, t_ray *ray, t_text text, int i)
 {
-	while (i <= ray->draw_end)
+	while (i < ray->draw_end)
 	{
 		ray->text_y = (int)ray->text_pos;
 		ray->text_pos += ray->step;
 		pixel(cube->frame, ray->index, i, text.img.int_addr[cube->t_height \
 		* ray->text_y \
-		+ ray->text_x]);
+		+ ray->text_x - 1]);
 		i++;
 	}
 }
