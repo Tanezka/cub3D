@@ -30,6 +30,7 @@ SRCS =	srcs/main.c \
 		library/libft/ft_memset.c \
 		library/libft/ft_strchr.c \
 		library/libft/ft_strdup.c \
+		library/libft/ft_strdup2.c \
 		library/libft/ft_strcmp.c \
 		library/libft/ft_split.c \
 		library/libft/ft_isdigit.c \

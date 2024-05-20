@@ -1,15 +1,19 @@
-NO ./srcs/textures/wall_no.xpm
-SO ./srcs/textures/wall_so.xpm
-WE ./srcs/textures/wall_we.xpm
-EA ./srcs/textures/wall_ea.xpm
 
-F 31,31,31
-C 225,30,0
+F  31,31,31
 
-      11111111111
-11111100001
-10100000101
-110000W00001
-10100000101
-10000000001
-11111111111
+           NO ./srcs/textures/wall_no.xpm
+       SO ./srcs/textures/wall_so.xpm
+C        225,30,0
+
+
+
+
+
+    WE ./srcs/textures/wall_we.xpm
+  EA ./srcs/textures/wall_ea.xpm
+
+11111
+ 11 W1
+ 0 11
+ 11111
+111111

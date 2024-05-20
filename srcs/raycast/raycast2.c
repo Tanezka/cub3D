@@ -59,8 +59,8 @@ void	ray_dda2(t_cub *cube, t_ray *ray)
 	else
 		ray->wall_hit = cube->pos.x + ray->perp_wall_dist * ray->dir_x;
 	ray->wall_hit -= (int)ray->wall_hit;
-	ray->text_x = 64 - (int)(ray->wall_hit * 64);
-	ray->step = (double)64 / ray->line_height;
+	ray->text_x = cube->t_width - (int)(ray->wall_hit * cube->t_width);
+	ray->step = (double)cube->t_width / ray->line_height;
 	ray->text_pos = (ray->draw_start - S_HEIGHT / 2 + ray->line_height / 2) \
 	* ray->step;
 }
@@ -118,7 +118,8 @@ void	draw_line_test2(t_cub *cube, t_ray *ray, t_text text, int i)
 	{
 		ray->text_y = (int)ray->text_pos;
 		ray->text_pos += ray->step;
-		pixel(cube->frame, ray->index, i, text.img.int_addr[64 * ray->text_y \
+		pixel(cube->frame, ray->index, i, text.img.int_addr[cube->t_height \
+		* ray->text_y \
 		+ ray->text_x]);
 		i++;
 	}

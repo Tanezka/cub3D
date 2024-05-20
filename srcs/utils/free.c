@@ -49,3 +49,13 @@ int	close_win(t_cub *var)
 	all_free(var);
 	exit(0);
 }
+
+void	free_visit(bool **visited, int height)
+{
+	int	i;
+
+	i = -1;
+	while (++i < height)
+		free(visited[i]);
+	free(visited);
+}

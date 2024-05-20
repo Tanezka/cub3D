@@ -17,9 +17,7 @@
 int	parse_line(char *line, t_cub *cube, int *nbr)
 {
 	int	value;
-	int	i;
 
-	i = -1;
 	if (ft_strlen(line) <= 1)
 	{
 		value = *nbr != -1;
@@ -33,9 +31,9 @@ int	parse_line(char *line, t_cub *cube, int *nbr)
 		*nbr = -1;
 		if (!check_path_color(cube))
 			return (0);
-		while (line[++i] != '\n')
-			line[i] = line[i];
-		line[i] = 0;
+		line = ft_strdup2(line);
+		if (!line)
+			return (error_message("In line parsing"));
 		value = parse_map(line, cube);
 	}
 	if (value == 0)
@@ -66,9 +64,8 @@ int	parse_file(char *filename, t_cub *cube)
 	free(line);
 	if (!cube->start_path)
 		return (error_message("Missing path in file {N, S, E, W}"));
-	if (!resize_map(cube))
+	if (!resize_map(cube) || !check_closed_map(cube))
 		return (0);
-	check_closed_map(cube);
 	return (1);
 }
 

@@ -26,8 +26,6 @@ int	is_current_param(char *line, t_cub *cube, int *nbr)
 		return (0);
 	one_var = split[0];
 	uppercase_var = ft_str_toupper(one_var);
-	if (!uppercase_var)
-		return (error_message("Failed to convert to uppercase"));
 	right = 0;
 	if (!ft_strcmp(uppercase_var, "NO") || !ft_strcmp(uppercase_var, "SO") \
 	|| !ft_strcmp(uppercase_var, "WE") || !ft_strcmp(uppercase_var, "EA"))
@@ -100,10 +98,9 @@ int	check_direct_path(char **split, t_cub *cube, int *nbr)
 t_data	get_image(t_cub *cube, char *path)
 {
 	t_data	img;
-	int		width;
-	int		height;
 
-	img.img = mlx_xpm_file_to_image(cube->mlx, path, &width, &height);
+	img.img = mlx_xpm_file_to_image(cube->mlx, path, \
+	&cube->t_width, &cube->t_height);
 	if (!img.img)
 	{
 		free(path);

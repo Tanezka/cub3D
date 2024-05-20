@@ -37,12 +37,10 @@ void	fill_black(t_cub *cube)
 void	draw_line_test(t_cub *cube, t_ray *ray)
 {
 	int		i;
-	int		color;
 	t_text	text;
 
 	ray->text_y = (int)ray->text_pos;
 	ray->text_y += ray->step;
-	color = 0;
 	if (ray->side == 1)
 	{
 		if (ray->dir_y > 0)
