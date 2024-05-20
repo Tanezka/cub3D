@@ -49,7 +49,7 @@ int	parse_file(char *filename, t_cub *cube)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (0);
+		return (ft_printf("Error\nFailed to open file\n"), 0);
 	line = line_reading(fd);
 	if (!line)
 		return (error_message("Empty file"));
