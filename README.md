@@ -5,8 +5,6 @@ cub3D is my first RayCaster project created using miniLibX. Inspired by the clas
 ---
 
 ## Features
-
-### Mandatory
 - Render a "realistic" 3D graphical representation of a maze from a first-person perspective.
 - Navigation using keyboard controls:
   - **Arrow keys**: Look left and right.
@@ -16,14 +14,7 @@ cub3D is my first RayCaster project created using miniLibX. Inspired by the clas
 - Display walls with textures that vary based on their orientation (N/S/E/W).
 - Customizable floor and ceiling colors.
 - Parse `.cub` configuration files for map layout and textures.
-
-### Bonus (if applicable)
 - Wall collisions.
-- Minimap system.
-- Doors that open and close.
-- Animated sprites.
-- Mouse-controlled view rotation.
-- Additional HUD elements like health bars, shadows, and weapons.
 
 ---
 
